@@ -8,9 +8,10 @@ public class BouncingBehaviour : MonoBehaviour
     private Vector2 lastVelocity;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        rb2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
     }
 
     // Update is called once per frame
@@ -18,6 +19,11 @@ public class BouncingBehaviour : MonoBehaviour
     {
 
     }
+    void FixedUpdate()
+    {
+        lastVelocity = rb2D.velocity;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Wall"))

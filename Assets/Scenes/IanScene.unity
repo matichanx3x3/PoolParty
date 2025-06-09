@@ -467,7 +467,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 877290079}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0417ec4f8cccb204c864463c9ce02236, type: 3}
   m_Name: 
@@ -512,8 +512,9 @@ MonoBehaviour:
   currentForceToPush: 0
   maxDistanceToApplyMaxForce: 4
   minDistanceToLaunch: 0.2
-  maxForceToLaunch: 1
+  maxForceToLaunch: 10
   friccion: 0
+  forceTrasmited: 0.6
   isDragged: 0
   timeToRestartBehaviour: 0
   rb2D: {fileID: 0}

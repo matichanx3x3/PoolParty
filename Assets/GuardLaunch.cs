@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class GuardLaunch : MonoBehaviour
@@ -21,7 +22,7 @@ public class GuardLaunch : MonoBehaviour
     [SerializeField] private float friccion;
 
     [Header("Pushing Stats")]
-    
+    [SerializeField, Range(0,1)] private float forceTrasmited = 0.7f;
 
     [Header("States")]
     [SerializeField, ReadOnly] private bool isDragged;
@@ -34,10 +35,11 @@ public class GuardLaunch : MonoBehaviour
     private Vector2 lastVelocity;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         flecha.SetActive(false);
         rb2D = GetComponent<Rigidbody2D>();
+        rb2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;  
     }
 
     // Update is called once per frame
@@ -64,11 +66,22 @@ public class GuardLaunch : MonoBehaviour
         mouseWorldPosition = InputManager.Instance.cameraUsed.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPosition.z = 0;
 
+        float scale = CalculateCurrentForce() * maxForceToLaunch / 50 ;
+
+        if(scale <= 2)
+        {
+            scale = 2;
+        }
+
+        flecha.transform.localScale = new Vector3 (flecha.transform.localScale.x,scale, flecha.transform.localScale.z);
+
         flecha.SetActive(true);
+
+        //ROTATION-----------------------------------------------------------------------
         Vector2 posToLookAt = mouseWorldPosition - this.transform.position;
         float transformRotateZ = MathF.Atan2(posToLookAt.x, posToLookAt.y) * Mathf.Rad2Deg;
         //flecha.transform.rotation = Quaternion.Euler(0, 0, -transformRotateZ);
-        flecha.transform.rotation = Quaternion.Euler(0, 0, -transformRotateZ);
+        flecha.transform.rotation = Quaternion.Euler(0, 0, -(transformRotateZ + 180f));
     }
 
     private void OnMouseUp()
@@ -90,7 +103,9 @@ public class GuardLaunch : MonoBehaviour
 
         currentForce = CalculateCurrentForce();
 
-        rb2D.AddForce((finalPosition * currentForce), ForceMode2D.Impulse);
+        Debug.Log(finalPosition.normalized * currentForce);
+
+        rb2D.AddForce((finalPosition.normalized * currentForce), ForceMode2D.Impulse);
     }
 
     private float CalculateCurrentForce()
@@ -130,11 +145,11 @@ public class GuardLaunch : MonoBehaviour
             {
                 Vector2 direction = (otherRb.position - rb2D.position).normalized;
 
-                float transferredSpeed = lastVelocity.magnitude * 0.8f; 
+                float transferredSpeed = lastVelocity.magnitude * forceTrasmited; 
 
                 otherRb.velocity = direction * transferredSpeed;
 
-                rb2D.velocity = lastVelocity * 0.2f;
+                rb2D.velocity = lastVelocity * 0.3f;
             }
         }
     }
