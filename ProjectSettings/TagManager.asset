@@ -43,3 +43,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BG
+    uniqueID: 2683565617
+    locked: 0
+  - name: InGame
+    uniqueID: 2991716663
+    locked: 0
