@@ -1,7 +1,5 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public enum TypeZones
@@ -11,12 +9,11 @@ public enum TypeZones
     DanceZone,
 }
 
-[Serializable]
-public class ZonesCap
+[Serializable]public class ZonesCap
 {
     public TypeZones typeZones;
     public int Capacity;
-    public List<Transform> SocialPoints
+    public List<Transform> SocialPoints;
 }
 
 public class GameManager : MonoBehaviour
@@ -108,7 +105,7 @@ public class GameManager : MonoBehaviour
     {
         if (currentAforo < maxAforo)
         {
-            Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)]; //spawnean el npc en el un punto de spawn (puertas)
+            Transform spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Count)]; //spawnean el npc en el un punto de spawn (puertas)
             GameObject newNPC = Instantiate(npcPrefab, spawnPoint.position, Quaternion.identity);
             normalConsumers.Add(newNPC);
         }
