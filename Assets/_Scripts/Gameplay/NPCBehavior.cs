@@ -1,98 +1,205 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+
+public enum NPCRole { Social, Bebedor, Bailador }
+public enum NPCMood { Normal, Borracho, Euforico, Peleador }
+
+[Serializable]
+public class NPC
+{
+    public NPCRole role;
+    public NPCMood mood;
+    public TypeZones assignedZone;
+    public bool isProblematic;
+    public int molestia;
+    public int MaxSatisfaccion = 100;
+    public int satisfaccion;
+    public int partyMaxTimer;
+    public int partyActualTimer;
+    public int nroSerMolestado;
+    public bool inTransition;
+    public NPC(NPCRole role, NPCMood mood)
+    {
+        this.role = role;
+        this.mood = mood;
+        isProblematic = false;
+        molestia = 10;
+        satisfaccion = MaxSatisfaccion - molestia;
+        partyMaxTimer = 80;
+        partyActualTimer = 0;
+        nroSerMolestado = 0;
+        inTransition = false;
+    }
+}
 
 public class NPCBehavior : MonoBehaviour
 {
+    public NPC npc;
     public static event Action<NPCBehavior> OnNPCRequestDespawn;
-    [SerializeField] List<Transform> directions = new List<Transform>();
+    [SerializeField] Transform directionToMove;
     [HideInInspector] public bool canMove = true; // Indicates if the NPC can move
     bool busy = false;
+    bool isGoingKicked = false;
 
+    public float moveSpeed = 2f;
+    private Coroutine moveCoroutine;
     void Start()
     {
 
     }
     void Update()
     {
-        if (!canMove)
-        {
-            return;
-        }
-        if (!busy)
-        {
-            StartCoroutine(MoveRandomly());
-        }
+
     }
 
-    IEnumerator MoveRandomly()
+     // Llamado desde GameManager justo tras Instantiate
+    public void BeignSpawned(Transform doorTransform)
     {
-        busy = true;
-
-        Transform target = GetRandomDirection();
-        if (target == null)
-        {
-            busy = false;
-            yield break;
-        }
-
-        while ((target.position - transform.position).sqrMagnitude > 0.1f)
-        {
-            Vector3 direction = (target.position - transform.position).normalized;
-            Vector3 rayOrigin = transform.position + direction * 0.8f;
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, direction, 0.5f);
-            Debug.DrawRay(rayOrigin, direction * 1.4f, Color.red, 0.1f);
-
-            if (hit.collider != null && !hit.collider.CompareTag("Door"))
-            {
-                Debug.Log("Blocked by: " + hit.collider.name);
-                busy = false;
-                yield break; // Detenemos el movimiento porque hay un obstáculo
-            }
-
-            transform.position += direction * Time.deltaTime * 3f;
-            yield return null; // Esperar al siguiente frame
-        }
-
-        Debug.Log("Llegó al destino, esperando...");
-        yield return new WaitForSeconds(5f);
-        busy = false;
+        
+        if (moveCoroutine != null)
+            StopCoroutine(moveCoroutine);
+        
+        moveCoroutine = StartCoroutine(MoveToPoint(doorTransform.position, OnArrivedAtDoor));
     }
 
-    private Transform GetRandomDirection()
+    private IEnumerator MoveToPoint(Vector3 targetPos, Action onArrive)
     {
-        if (directions.Count == 0)
+        // Mientras no estemos cerca del target, movemos
+        while ((transform.position - targetPos).sqrMagnitude > 0.01f)
         {
-            return null;
+            transform.position = Vector3.MoveTowards(
+                transform.position, 
+                targetPos, 
+                moveSpeed * Time.deltaTime
+            );
+            yield return null;
         }
-        int randomIndex = UnityEngine.Random.Range(0, directions.Count);
-        Debug.Log("Direction chosen");
-        return directions[randomIndex];
+        // invocamos callback
+        onArrive?.Invoke();
     }
+
+    // Callback cuando termina de llegar a la puerta
+    private void OnArrivedAtDoor()
+    {
+        // Aquí pides la zona disponible al GameManager
+        GenerateNewConsumer();
+    }
+
+    private void RequestZoneFromManager()
+    {
+        // Ejemplo: solicita al GameManager un punto en una zona
+        var zoneInfo = GameManager.Instance.AssignZoneToNPC(this);
+        // Asigna el nuevo punto y zona, y continúa la lógica:
+        GoToAsignedPoint(zoneInfo);
+    }
+
+    public void GoToAsignedPoint(Transform pointToGoTransform)
+    {
+        if (moveCoroutine != null)
+            StopCoroutine(moveCoroutine);
+        
+        moveCoroutine = StartCoroutine(MoveToPoint(pointToGoTransform.position, DoRoutine));
+    }
+
+    public void DoRoutine()
+    {
+        //rutinas de si es social, bebedor o bailador. todos siempre con el mood NORMAL
+        print("Hago mi rutina designada " + npc.role);
+    }
+
+    public void DoProblematicRoutine()
+    {
+        //si el npc se ha convertido en un problematico, se le asigna su rutina modificada de Borracho, Euforico, Problematico.
+    }
+
     public void ResetMovement()
     {
-        StartCoroutine(ResetMovementCoroutine());
-    }
 
-    private IEnumerator ResetMovementCoroutine()
-    {
-        yield return new WaitForSeconds(20f); 
-        canMove = true;
-        busy = false;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Door"))
         {
-            DespawnMe();
+            switch (isGoingKicked)
+            {
+                case true:
+                    DespawnMe();
+                    break;
+                case false:
+                    GenerateNewConsumer();
+                    break;
+            }
         }
+
     }
 
     void DespawnMe()
     {
         OnNPCRequestDespawn?.Invoke(this); // Lanza el evento
     }
+    void GenerateNewConsumer()
+    {
+        NPCRole desiredRole = (NPCRole)UnityEngine.Random.Range(0, 3);
+        print("Desired role: " + desiredRole);
 
+        // my rol?
+        var (finalRole, zoneType) = VerifyZoneAvailability(desiredRole);
+
+        // new data
+        var data = new NPC(finalRole, NPCMood.Normal);
+        data.assignedZone = zoneType;
+        npc = data;
+
+        // Asigna el punto donde irá en la zona
+        Transform assignedPoint = GameManager.Instance.AssignZoneToNPC(this);
+        if (assignedPoint == null)
+        {
+            Debug.LogWarning("No se pudo asignar punto a NPC");
+            return;
+        }
+
+        GameManager.Instance.normalConsumers.Add(this.gameObject);
+
+        GoToAsignedPoint(assignedPoint);
+
+    }
+    
+    private (NPCRole role, TypeZones zone) VerifyZoneAvailability(NPCRole desiredRole)
+    {
+        // rol -> zona, diccionario temporal
+        var roleToZone = new Dictionary<NPCRole, TypeZones>
+        {
+            { NPCRole.Social, TypeZones.SocialZone },
+            { NPCRole.Bebedor, TypeZones.BarZone },
+            { NPCRole.Bailador, TypeZones.DanceZone }
+        };
+
+        //setea roles en orden, primero el deseado
+        var roles = new List<NPCRole> { desiredRole };
+        roles.AddRange(Enum.GetValues(typeof(NPCRole))
+                           .Cast<NPCRole>()
+                           .Where(r => r != desiredRole && (r == NPCRole.Social || r == NPCRole.Bebedor || r == NPCRole.Bailador)));
+
+        // search for zona con hueco.
+        foreach (var role in roles)
+        {
+            var zone = roleToZone[role];
+            var cap = GameManager.Instance.capZones.Find(zc => zc.typeZones == zone);
+            if (cap != null && cap.Capacity < cap.MaxCap)
+            {
+                return (role, zone);
+            }
+        }
+
+        return (desiredRole, roleToZone[desiredRole]);
+    }
+
+    void inTransition()
+    {
+        //realiza la animacion de si se va a ir o se vuelve problematico.
+    }
 }
