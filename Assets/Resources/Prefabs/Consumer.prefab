@@ -107,7 +107,7 @@ MonoBehaviour:
     molestia: 10
     MaxSatisfaccion: 100
     satisfaccion: 90
-    partyMaxTimer: 80
+    partyMaxTimer: 10
     partyActualTimer: 0
     nroSerMolestado: 0
     inTransition: 0

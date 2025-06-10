@@ -17,8 +17,8 @@ public class NPC
     public int molestia;
     public int MaxSatisfaccion = 100;
     public int satisfaccion;
-    public int partyMaxTimer;
-    public int partyActualTimer;
+    public float partyMaxTimer;
+    public float partyActualTimer;
     public int nroSerMolestado;
     public bool inTransition;
     public NPC(NPCRole role, NPCMood mood)
@@ -28,7 +28,7 @@ public class NPC
         isProblematic = false;
         molestia = 10;
         satisfaccion = MaxSatisfaccion - molestia;
-        partyMaxTimer = 80;
+        partyMaxTimer = 40;
         partyActualTimer = 0;
         nroSerMolestado = 0;
         inTransition = false;
@@ -90,10 +90,17 @@ public class NPCBehavior : MonoBehaviour
 
     private void RequestZoneFromManager()
     {
-        // Ejemplo: solicita al GameManager un punto en una zona
-        var zoneInfo = GameManager.Instance.AssignZoneToNPC(this);
-        // Asigna el nuevo punto y zona, y continúa la lógica:
-        GoToAsignedPoint(zoneInfo);
+        // Asigna el punto donde irá en la zona
+        Transform assignedPoint = GameManager.Instance.AssignZoneToNPC(this);
+        if (assignedPoint == null)
+        {
+            Debug.LogWarning("No se pudo asignar punto a NPC");
+            return;
+        }
+
+        GameManager.Instance.normalConsumers.Add(this.gameObject);
+
+        GoToAsignedPoint(assignedPoint);
     }
 
     public void GoToAsignedPoint(Transform pointToGoTransform)
@@ -108,11 +115,40 @@ public class NPCBehavior : MonoBehaviour
     {
         //rutinas de si es social, bebedor o bailador. todos siempre con el mood NORMAL
         print("Hago mi rutina designada " + npc.role);
+
+        Timer();
     }
 
+    public void AddMolestiaPoints()
+    {
+        npc.molestia += 5;
+    }
+
+    public void AddSerMolestado()
+    {
+        npc.nroSerMolestado ++;
+        AddMolestiaPoints();
+    }
+    
     public void DoProblematicRoutine()
     {
         //si el npc se ha convertido en un problematico, se le asigna su rutina modificada de Borracho, Euforico, Problematico.
+    }
+
+    public void Timer()
+    {
+        StartCoroutine(DoTimer());
+    }
+
+    private IEnumerator DoTimer()
+    {
+        while (npc.partyActualTimer < npc.partyMaxTimer)
+        {
+            npc.partyActualTimer += Time.deltaTime;
+            yield return null;
+        }
+        // Aquí ya llegó al máximo
+        inTransition();
     }
 
     public void ResetMovement()
@@ -154,17 +190,7 @@ public class NPCBehavior : MonoBehaviour
         data.assignedZone = zoneType;
         npc = data;
 
-        // Asigna el punto donde irá en la zona
-        Transform assignedPoint = GameManager.Instance.AssignZoneToNPC(this);
-        if (assignedPoint == null)
-        {
-            Debug.LogWarning("No se pudo asignar punto a NPC");
-            return;
-        }
-
-        GameManager.Instance.normalConsumers.Add(this.gameObject);
-
-        GoToAsignedPoint(assignedPoint);
+        RequestZoneFromManager();
 
     }
     
@@ -201,5 +227,6 @@ public class NPCBehavior : MonoBehaviour
     void inTransition()
     {
         //realiza la animacion de si se va a ir o se vuelve problematico.
+        print("deciciendo cual ser");
     }
 }
