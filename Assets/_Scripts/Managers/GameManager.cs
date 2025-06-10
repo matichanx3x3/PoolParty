@@ -126,6 +126,7 @@ public class GameManager : MonoBehaviour
     public void SpawnNPC()
     {
         if (currentAforo >= maxAforo) return;
+        currentAforo++;
         var randomNumberForSpawn = UnityEngine.Random.Range(0, doorPoints.Count);
         var spawn = spawnPoints[randomNumberForSpawn];
         var door = doorPoints[randomNumberForSpawn];
@@ -150,7 +151,14 @@ public class GameManager : MonoBehaviour
         }
 
         // find ZonePoint que no esté lleno
-        ZonePoint freePoint = zoneCap.zonePoints.Find(zp => !zp.isFull);
+        var availablePoints = zoneCap.zonePoints.Where(zp => !zp.isFull).ToList();
+        if (availablePoints.Count == 0)
+        {
+            Debug.LogWarning($"Zona {zoneType} está completa (todos los puntos llenos)");
+            return null;
+        }
+        ZonePoint freePoint = availablePoints[UnityEngine.Random.Range(0, availablePoints.Count)];
+
         if (freePoint == null)
         {
             Debug.LogWarning($"Zona {zoneType} está completa (todos los puntos llenos)");

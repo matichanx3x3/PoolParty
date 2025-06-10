@@ -3460,7 +3460,7 @@ MonoBehaviour:
   currentAforo: 0
   normalConsumers: []
   problematicConsumers: []
-  spawnInterval: 10
+  spawnInterval: 1
 --- !u!1 &1991919088
 GameObject:
   m_ObjectHideFlags: 0
