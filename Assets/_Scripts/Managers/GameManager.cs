@@ -4,9 +4,26 @@ using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEngine;
 
+public enum TypeZones
+{
+    SocialZone,
+    BarZone,
+    DanceZone,
+}
+
+[Serializable]
+public class ZonesCap
+{
+    public TypeZones typeZones;
+    public int Capacity;
+    public List<Transform> SocialPoints
+}
+
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
 
+    public List<ZonesCap> capZones;
     [SerializeField] GameObject npcPrefab;
     [SerializeField] List<Transform> spawnPoints; //Puntos de instancia
     [SerializeField] int maxAforo = 20;
@@ -17,7 +34,23 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        Instance = this;
+
         NPCBehavior.OnNPCRequestDespawn += HandleDespawnRequest;
+    }
+    public int GetZoneCapacity(TypeZones type)
+    {
+        switch (type)
+        {
+            case TypeZones.SocialZone:
+                return capZones[2].Capacity;
+            case TypeZones.BarZone:
+                return capZones[3].Capacity;
+            case TypeZones.DanceZone:
+                return capZones[4].Capacity;
+            default:
+                return 0;
+        }
     }
 
     void Start()
