@@ -94,16 +94,12 @@ public class GuardLaunch : MonoBehaviour
 
     private void LaunchGuard()
     {
-        Debug.Log(mouseWorldPosition);
 
         Vector3 finalPosition = this.transform.position - mouseWorldPosition;
-        Debug.Log(finalPosition);
 
         finalPosition.z = 0;
 
         currentForce = CalculateCurrentForce();
-
-        Debug.Log(finalPosition.normalized * currentForce);
 
         rb2D.AddForce((finalPosition.normalized * currentForce), ForceMode2D.Impulse);
     }
@@ -134,6 +130,8 @@ public class GuardLaunch : MonoBehaviour
             Vector2 normal = collision.GetContact(0).normal;
             Vector2 reflected = Vector2.Reflect(lastVelocity.normalized, normal);
             rb2D.velocity = reflected * lastVelocity.magnitude;
+
+            SoundManager.Instance.PlayBump(0);
         }
 
 
@@ -150,6 +148,26 @@ public class GuardLaunch : MonoBehaviour
                 otherRb.velocity = direction * transferredSpeed;
 
                 rb2D.velocity = lastVelocity * 0.3f;
+                
+                SoundManager.Instance.PlayBump(1);
+            }
+        }
+
+        if (collision.collider.CompareTag("Angry"))
+        {
+            Rigidbody2D otherRb = collision.collider.GetComponent<Rigidbody2D>();
+
+            if (otherRb != null)
+            {
+                Vector2 direction = (otherRb.position - rb2D.position).normalized;
+
+                float transferredSpeed = lastVelocity.magnitude * forceTrasmited;
+
+                otherRb.velocity = direction * transferredSpeed;
+
+                rb2D.velocity = lastVelocity * 0.3f;
+
+                SoundManager.Instance.PlayBump(2);
             }
         }
     }

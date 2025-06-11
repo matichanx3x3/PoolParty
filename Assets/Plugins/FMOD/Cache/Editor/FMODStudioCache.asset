@@ -220,7 +220,7 @@ MonoBehaviour:
   Path: ../../FMOD Studio/Pool Party/Build/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638851854310093947
+  lastModified: 638851859035327776
   FileSizes: []
   Exists: 1
 --- !u!114 &-429123153829790298
@@ -292,7 +292,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -8427102456239117698}
   cacheVersion: 131847
-  cacheTime: 638851854354999446
+  cacheTime: 638851962937505780
   SerializableEventsDict:
   - key: event:/Ambience/PeopleEvent
     index: 0
@@ -348,7 +348,7 @@ MonoBehaviour:
   StudioPath: 
   Min: 0
   Max: 2
-  Default: 0
+  Default: 1
   ID:
     data1: 2250332275
     data2: 2556465400
@@ -371,7 +371,7 @@ MonoBehaviour:
   Path: ../../FMOD Studio/Pool Party/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638851854354999446
+  lastModified: 638851962937505780
   FileSizes: []
   Exists: 1
 --- !u!114 &3862918348286491178
@@ -396,7 +396,7 @@ MonoBehaviour:
   - {fileID: -1191271593427249178}
   IsStream: 1
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters:
   - {fileID: 435917530789463551}
   MinDistance: 1

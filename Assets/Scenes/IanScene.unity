@@ -311,6 +311,85 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &852897443
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 852897444}
+  - component: {fileID: 852897445}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &852897444
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852897443}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.3440914, y: -5.0095387, z: 21.951366}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &852897445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852897443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bd9a54c7ceaad349a1e16cb0a7bf967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bumpEvent:
+    Guid:
+      Data1: -1248228615
+      Data2: 1311838181
+      Data3: -1025095757
+      Data4: 644584398
+    Path: event:/FX/BumpEvent
+  peopleEvent:
+    Guid:
+      Data1: -1563429037
+      Data2: 1259772407
+      Data3: 339368851
+      Data4: 1129488158
+    Path: event:/Ambience/PeopleEvent
+  musicEvent:
+    Guid:
+      Data1: -1714084719
+      Data2: 1200580540
+      Data3: -1364988527
+      Data4: -622372823
+    Path: event:/Music/MusicLoopEvent
+  changeMusicEvent:
+    Guid:
+      Data1: -1169047353
+      Data2: 1288123455
+      Data3: -649378432
+      Data4: 780799628
+    Path: event:/Music/ChangeMusic
+  menuEvent:
+    Guid:
+      Data1: 569135593
+      Data2: 1248172384
+      Data3: -618271841
+      Data4: -1766809746
+    Path: event:/Music/Menu
 --- !u!1 &877290079
 GameObject:
   m_ObjectHideFlags: 0
@@ -852,8 +931,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1359507372}
   - component: {fileID: 1359507371}
-  - component: {fileID: 1359507370}
   - component: {fileID: 1359507373}
+  - component: {fileID: 1359507374}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -861,14 +940,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1359507370
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359507369}
-  m_Enabled: 1
 --- !u!20 &1359507371
 Camera:
   m_ObjectHideFlags: 0
@@ -979,6 +1050,20 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &1359507374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359507369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1 &1548893016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,3 +1522,4 @@ SceneRoots:
   - {fileID: 1548893019}
   - {fileID: 1289884693}
   - {fileID: 877290082}
+  - {fileID: 852897444}
