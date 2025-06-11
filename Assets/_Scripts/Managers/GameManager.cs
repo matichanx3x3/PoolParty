@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<GameObject> problematicConsumers = new List<GameObject>();
 
     [SerializeField] private float spawnInterval;
+    [SerializeField] private GameObject[] cameras = new GameObject[1];
     void Awake()
     {
         Instance = this;
@@ -75,11 +76,16 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnLoop());
+        
+            Debug.Log("Cambiando cámara....");
+            CameraSwap(cameras[0], cameras[1]);
     }
 
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+        }
     }
 
     private IEnumerator SpawnLoop()
@@ -192,6 +198,13 @@ public class GameManager : MonoBehaviour
         return doorPoints[randomIndex];
     }
 
+
+    public void CameraSwap(GameObject camera1, GameObject camera2)
+    {
+        Debug.Log("Cambiando cámara");
+        camera1.SetActive(!camera1.activeSelf);
+        camera2.SetActive(!camera2.activeSelf);
+    }
     void GameOver()
     {
         //game over si el aforo actual es menos al 20% del maximo o cuando la cantidad de problematicos sea del 50% del aforo maximo del lugar
