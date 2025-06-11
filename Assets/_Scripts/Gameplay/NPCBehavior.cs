@@ -128,6 +128,12 @@ public class NPCBehavior : MonoBehaviour
     public void AddMolestiaPoints()
     {
         npc.molestia += 5;
+        npc.satisfaccion = npc.MaxSatisfaccion - npc.molestia;
+        
+        if (!npc.isProblematic && npc.nroSerMolestado >= 3)
+        {
+            inTransition();
+        }
     }
 
     public void AddSerMolestado()
@@ -159,6 +165,13 @@ public class NPCBehavior : MonoBehaviour
 
     public void ResetMovement()
     {
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+
+        rb.bodyType = RigidbodyType2D.Kinematic; // Para evitar que se vea afectado por física externa.
+        rb.simulated = false;
+
+        //detenga todo movimiento alguno, despues de un par de segundos ya tiene el rb activo de nuevo (para realizar lo que decida)
 
     }
 
@@ -232,9 +245,12 @@ public class NPCBehavior : MonoBehaviour
 
     void inTransition()
     {
+        ResetMovement();
+        print("algo esta pasando aaah");
         npc.inTransition = true;
         int randomChance = UnityEngine.Random.Range(0, npc.MaxSatisfaccion);
 
+        //despues de X hara esto
         if (randomChance <= npc.molestia)
         {
             npc.isProblematic = true;
@@ -263,18 +279,18 @@ public class NPCBehavior : MonoBehaviour
                 StopCoroutine(moveCoroutine);
             moveCoroutine = StartCoroutine(MoveToPoint(door.position, DespawnMe));
         }
+        npc.inTransition = false;
     }
 
      private void OnCollisionEnter2D(Collision2D collision)
     {
-        // 1) Si choca con el guardia (que impulsa usando física):
+        
         var guard = collision.collider.GetComponent<GuardLaunch>();
         if (guard != null)
         {
             ReactToGuardHit(collision);
         }
 
-        // 2) Si es la puerta al salir:
         if (collision.collider.CompareTag("Door"))
         {
             if (isGoingKicked) DespawnMe();
@@ -284,29 +300,8 @@ public class NPCBehavior : MonoBehaviour
 
     private void ReactToGuardHit(Collision2D collision)
     {
-        // --- LA FÍSICA ya la aplica el GuardLaunch (con AddForce/velocity) ---
 
-        // 1) Aumentar molestia en un 5% de MaxSatisfaccion
-        int delta = Mathf.CeilToInt(npc.MaxSatisfaccion * 0.05f);
-        npc.molestia += delta;
-
-        // 2) Aumentar número de veces molestado
-        npc.nroSerMolestado++;
-
-        // 3) Recalcular satisfaccion
-        npc.satisfaccion = Mathf.Max(0, npc.MaxSatisfaccion - npc.molestia);
-
-        // 4) (Opcional) Si baja de cierto umbral, pasarlo a problemático
-        if (!npc.isProblematic && npc.satisfaccion <= npc.MaxSatisfaccion * 0.5f)
-        {
-            npc.isProblematic = true;
-            npc.mood = NPCMood.Borracho; // o el que prefieras
-            // Lanza animación, corrutina de rutina problemática, etc.
-            DoProblematicRoutine();
-        }
-
-        // 5) Feedback visual o sonoro
-        // e.g. animator.SetTrigger("HitByGuard");
+        AddSerMolestado();
     }
 
 }
