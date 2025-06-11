@@ -131,7 +131,7 @@ public class GuardLaunch : MonoBehaviour
         }
 
         float forceToApply = (distance / maxDistanceToApplyMaxForce) * maxArrowDistance;
-        Debug.Log("ArrowDistance: " + forceToApply);
+        //Debug.Log("ArrowDistance: " + forceToApply);
 
         return forceToApply;
     }

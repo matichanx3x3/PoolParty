@@ -43,7 +43,7 @@ public class NPCBehavior : MonoBehaviour
     [SerializeField] Transform directionToMove;
     [HideInInspector] public bool canMove = true; // Indicates if the NPC can move
     bool busy = false;
-    bool isGoingKicked = false;
+    [SerializeField] bool isGoingKicked = false;
 
     public float moveSpeed = 2f;
     private Coroutine moveCoroutine;
@@ -53,14 +53,8 @@ public class NPCBehavior : MonoBehaviour
     public SpriteRenderer actualEye;
     public List<Sprite> eyeList;
 
-    void Start()
-    {
-
-    }
-    void Update()
-    {
-
-    }
+    [SerializeField] private float normalRoutineInterval = 5f;
+    [SerializeField] private float problematicRoutineInterval = 3f;
 
     // Llamado desde GameManager justo tras Instantiate
     public void BeignSpawned(Transform doorTransform)
@@ -120,10 +114,54 @@ public class NPCBehavior : MonoBehaviour
 
     public void DoRoutine()
     {
-        //rutinas de si es social, bebedor o bailador. todos siempre con el mood NORMAL
-        print("Hago mi rutina designada " + npc.role);
+        int roll = UnityEngine.Random.Range(0, 100);
+        if (roll < 60)
+        {
+            // 60% rutina normal
+            npc.isProblematic = false;
+            npc.mood = NPCMood.Normal;
+            Debug.Log($"NPC {npc.role} hace su rutina normal");
+        }
+        else
+        {
+            // 40% se vuelve problemático
+            npc.isProblematic = true;
+            switch (npc.role)
+            {
+                case NPCRole.Social:
+                    npc.mood = NPCMood.Peleador;
+                    break;
+                case NPCRole.Bebedor:
+                    npc.mood = NPCMood.Borracho;
+                    break;
+                case NPCRole.Bailador:
+                    npc.mood = NPCMood.Euforico;
+                    break;
+            }
+            Debug.Log($"NPC {npc.role} ha entrado en modo problemático: {npc.mood}");
+        }
+        // Desactivamos trigger para que colisiones físicas interpongan
         col2D.isTrigger = false;
-        Timer();
+        // Pon en marcha cualquier temporizador que uses
+        StartCoroutine(DoTimer());
+        StartCoroutine(RoutineLoop());
+    }
+
+    private IEnumerator RoutineLoop()
+    {
+        while (true)
+        {
+            if (npc.isProblematic)
+            {
+                DoProblematicRoutine();
+                yield return new WaitForSeconds(problematicRoutineInterval);
+            }
+            else
+            {
+                DoNormalRoutine();
+                yield return new WaitForSeconds(normalRoutineInterval);
+            }
+        }
     }
 
     public void AddMolestiaPoints()
@@ -143,7 +181,7 @@ public class NPCBehavior : MonoBehaviour
         AddMolestiaPoints();
     }
 
-    public void DoProblematicRoutine()
+    /*public void DoProblematicRoutine()
     {
         Debug.Log("Lanzandose");
         this.transform.tag = "Angry";
@@ -172,8 +210,101 @@ public class NPCBehavior : MonoBehaviour
             rb.AddForce((target.transform.position - this.transform.position).normalized * 4, ForceMode2D.Impulse);
         }
 
+    }*/
+
+    private void DoNormalRoutine()
+    {
+        // Aquí defines la rutina estándar según el role
+        switch (npc.role)
+        {
+            case NPCRole.Social:
+                // charlar o moverse a un punto de reunión
+                print("hago social");
+                break;
+            case NPCRole.Bebedor:
+                // animación de beber en bar
+                print("hago beber");
+                break;
+            case NPCRole.Bailador:
+                // animación de baile en pista
+                print("hago bailar");
+                break;
+        }
     }
 
+    public void DoProblematicRoutine()
+    {
+        isGoingKicked = true;
+        this.gameObject.tag = "Angry";
+        actualEye.sprite = eyeList[2];
+
+        switch (npc.mood)
+        {
+            case NPCMood.Peleador:
+                print("hago pelea");
+                LaunchAtNearestClient();
+                break;
+            case NPCMood.Borracho:
+                print("hago borracho");
+                StaggerInPlace();
+                break;
+            case NPCMood.Euforico:
+                print("hago euforico");
+                SpinAndMoveRandomly();
+                break;
+        }
+    }
+
+    private void LaunchAtNearestClient()
+    {
+        /*
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 10f, Vector2.zero);
+        Transform target = hits.FirstOrDefault(h => h.transform.CompareTag("Clients")).transform;
+
+        if (target != null)
+        {
+            Vector2 dir = (target.position - transform.position).normalized;
+            rb.AddForce(dir * 4f, ForceMode2D.Impulse);
+            Debug.Log("Peleador lanza contra cliente");
+        }*/
+        RaycastHit2D[] outHit =  Physics2D.CircleCastAll(this.transform.position,10f,Vector2.zero);
+
+        target = null;
+        if(outHit.Length > 0 && outHit != null)
+        {
+            for (int i = 0; i < outHit.Length; i++)
+            {
+                if (outHit[i].transform.CompareTag("Clients"))
+                {
+                    target = outHit[i].transform.gameObject;
+                    break;
+                }
+                target = null;
+            }
+        }
+
+        if(target != null)
+        {
+            Debug.Log("Lanzandose pt 2");
+            rb.AddForce((target.transform.position - this.transform.position).normalized * 4, ForceMode2D.Impulse);
+        }
+    }
+
+    private void StaggerInPlace()
+    {
+        Vector2 randomDir = UnityEngine.Random.insideUnitCircle.normalized;
+        rb.AddForce(randomDir * 2f, ForceMode2D.Impulse);
+        Debug.Log("Borracho se tambalea");
+    }
+
+    private void SpinAndMoveRandomly()
+    {
+        float angle = UnityEngine.Random.Range(0f, 360f);
+        Vector2 dir = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+        rb.AddTorque(10f, ForceMode2D.Impulse);
+        rb.AddForce(dir * 3f, ForceMode2D.Impulse);
+        Debug.Log("Eufórico gira y explota de energía");
+    }
     public void Timer()
     {
         StartCoroutine(DoTimer());
@@ -217,6 +348,8 @@ public class NPCBehavior : MonoBehaviour
 
     void DespawnMe()
     {
+        StopAllCoroutines();
+        isGoingKicked = true;
         OnNPCRequestDespawn?.Invoke(this); // Lanza el evento
     }
     void GenerateNewConsumer()
@@ -226,7 +359,6 @@ public class NPCBehavior : MonoBehaviour
 
         // my rol?
         var (finalRole, zoneType) = VerifyZoneAvailability(desiredRole);
-
         // new data
         var data = new NPC(finalRole, NPCMood.Normal);
         data.assignedZone = zoneType;
@@ -279,7 +411,7 @@ public class NPCBehavior : MonoBehaviour
         if (randomChance <= npc.molestia)
         {
             npc.isProblematic = true;
-
+            isGoingKicked = true;
             switch (npc.role)
             {
                 case NPCRole.Social:
@@ -294,15 +426,16 @@ public class NPCBehavior : MonoBehaviour
             }
 
             print($"NPC se volvió problemático: {npc.mood}");
-            DoProblematicRoutine();
+            StartCoroutine(RoutineLoop());
         }
         else
         {
+            isGoingKicked = true;
             Transform door = GameManager.Instance.GetExitDoor();
 
             if (moveCoroutine != null)
                 StopCoroutine(moveCoroutine);
-
+            isGoingKicked = true;
             moveCoroutine = StartCoroutine(MoveToPoint(door.position, DespawnMe));
         }
 
@@ -323,7 +456,6 @@ public class NPCBehavior : MonoBehaviour
         if (collision.collider.CompareTag("Door"))
         {
             if (isGoingKicked) DespawnMe();
-            else GenerateNewConsumer();
         }
     }
 
