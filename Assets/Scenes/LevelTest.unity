@@ -3474,7 +3474,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3804142907090510479, guid: bf9f773bd6ebc448cb7fdef1e043f2f1, type: 3}
       propertyPath: maxArrowDistance
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3804142907090510479, guid: bf9f773bd6ebc448cb7fdef1e043f2f1, type: 3}
       propertyPath: maxForceToLaunch
@@ -3483,6 +3483,22 @@ PrefabInstance:
     - target: {fileID: 3804142907090510479, guid: bf9f773bd6ebc448cb7fdef1e043f2f1, type: 3}
       propertyPath: maxDistanceToApplyMaxForce
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3956268550430742640, guid: bf9f773bd6ebc448cb7fdef1e043f2f1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3956268550430742640, guid: bf9f773bd6ebc448cb7fdef1e043f2f1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3956268550430742640, guid: bf9f773bd6ebc448cb7fdef1e043f2f1, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3956268550430742640, guid: bf9f773bd6ebc448cb7fdef1e043f2f1, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4575808100034981107, guid: bf9f773bd6ebc448cb7fdef1e043f2f1, type: 3}
       propertyPath: m_LocalPosition.x

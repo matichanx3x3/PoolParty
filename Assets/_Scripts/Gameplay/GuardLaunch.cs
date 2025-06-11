@@ -65,9 +65,9 @@ public class GuardLaunch : MonoBehaviour
 
         float scale = CalculateArrow();
 
-        if(scale <= 2)
+        if(scale <= 1)
         {
-            scale = 2;
+            scale = 1;
         }
 
         flecha.transform.localScale = new Vector3 (flecha.transform.localScale.x,scale, flecha.transform.localScale.z);
