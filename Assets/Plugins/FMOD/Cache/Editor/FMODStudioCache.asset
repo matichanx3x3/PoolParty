@@ -43,10 +43,10 @@ MonoBehaviour:
   Path: ../../FMOD Studio/Pool Party/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638851854310747563
+  lastModified: 638852579813990477
   FileSizes:
   - Name: 
-    Value: 1548
+    Value: 1734
   Exists: 1
 --- !u!114 &-8122949249425298574
 MonoBehaviour:
@@ -238,7 +238,7 @@ MonoBehaviour:
   Path: ../../FMOD Studio/Pool Party/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638851854310717062
+  lastModified: 638852579813970062
   FileSizes: []
   Exists: 1
 --- !u!114 &-134820213899867568
@@ -256,7 +256,7 @@ MonoBehaviour:
   Path: ../../FMOD Studio/Pool Party/Build/Desktop/Fx.bank
   Name: Fx
   StudioPath: bank:/Fx
-  lastModified: 638851854310666709
+  lastModified: 638852571086235674
   FileSizes: []
   Exists: 1
 --- !u!114 &11400000
@@ -287,12 +287,16 @@ MonoBehaviour:
   - {fileID: 6241371420851614009}
   EditorParameters:
   - {fileID: -7932079131750996444}
+  - {fileID: 8883442374619205293}
+  - {fileID: 7068976704588752785}
+  - {fileID: 7996338960926451024}
+  - {fileID: 6132382812431199385}
   MasterBanks:
   - {fileID: -429123153829790298}
   StringsBanks:
   - {fileID: -8427102456239117698}
   cacheVersion: 131847
-  cacheTime: 638851962937505780
+  cacheTime: 638852579813990477
   SerializableEventsDict:
   - key: event:/Ambience/PeopleEvent
     index: 0
@@ -371,7 +375,7 @@ MonoBehaviour:
   Path: ../../FMOD Studio/Pool Party/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638851962937505780
+  lastModified: 638852574241734538
   FileSizes: []
   Exists: 1
 --- !u!114 &3862918348286491178
@@ -453,6 +457,30 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &6132382812431199385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MasterVolume
+  m_EditorClassIdentifier: 
+  Name: MasterVolume
+  StudioPath: parameter:/MasterVolume
+  Min: 0
+  Max: 100
+  Default: 85
+  ID:
+    data1: 2482416039
+    data2: 2079139660
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &6241371420851614009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,6 +509,54 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 64000
+--- !u!114 &7068976704588752785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FxVolume
+  m_EditorClassIdentifier: 
+  Name: FxVolume
+  StudioPath: parameter:/FxVolume
+  Min: 0
+  Max: 100
+  Default: 85
+  ID:
+    data1: 661277682
+    data2: 3452177601
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &7996338960926451024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/AmbienceVolume
+  m_EditorClassIdentifier: 
+  Name: AmbienceVolume
+  StudioPath: parameter:/AmbienceVolume
+  Min: 0
+  Max: 100
+  Default: 84.15842
+  ID:
+    data1: 2027359208
+    data2: 2028548809
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &8175827324658329286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,3 +587,27 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &8883442374619205293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MusicVolume
+  m_EditorClassIdentifier: 
+  Name: MusicVolume
+  StudioPath: parameter:/MusicVolume
+  Min: 0
+  Max: 100
+  Default: 85
+  ID:
+    data1: 1008472274
+    data2: 4133277683
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1

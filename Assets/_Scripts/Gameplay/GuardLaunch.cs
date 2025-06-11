@@ -21,9 +21,6 @@ public class GuardLaunch : MonoBehaviour
     [SerializeField] private float maxForceToLaunch = 10;
     [SerializeField] private float friccion;
 
-    [Header("Pushing Stats")]
-    [SerializeField, Range(0,1)] private float forceTrasmited = 0.7f;
-
     [Header("States")]
     [SerializeField, ReadOnly] private bool isDragged;
 
@@ -120,55 +117,5 @@ public class GuardLaunch : MonoBehaviour
         float forceToApply = distance * maxForceToLaunch;
 
         return forceToApply;
-    }
-
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Wall"))
-        {
-            Vector2 normal = collision.GetContact(0).normal;
-            Vector2 reflected = Vector2.Reflect(lastVelocity.normalized, normal);
-            rb2D.velocity = reflected * lastVelocity.magnitude;
-
-            SoundManager.Instance.PlayBump(0);
-        }
-
-
-        if (collision.collider.CompareTag("Clients"))
-        {
-            Rigidbody2D otherRb = collision.collider.GetComponent<Rigidbody2D>();
-
-            if (otherRb != null)
-            {
-                Vector2 direction = (otherRb.position - rb2D.position).normalized;
-
-                float transferredSpeed = lastVelocity.magnitude * forceTrasmited; 
-
-                otherRb.velocity = direction * transferredSpeed;
-
-                rb2D.velocity = lastVelocity * 0.3f;
-                
-                SoundManager.Instance.PlayBump(1);
-            }
-        }
-
-        if (collision.collider.CompareTag("Angry"))
-        {
-            Rigidbody2D otherRb = collision.collider.GetComponent<Rigidbody2D>();
-
-            if (otherRb != null)
-            {
-                Vector2 direction = (otherRb.position - rb2D.position).normalized;
-
-                float transferredSpeed = lastVelocity.magnitude * forceTrasmited;
-
-                otherRb.velocity = direction * transferredSpeed;
-
-                rb2D.velocity = lastVelocity * 0.3f;
-
-                SoundManager.Instance.PlayBump(2);
-            }
-        }
     }
 }

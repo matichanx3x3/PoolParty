@@ -19,6 +19,8 @@ public class SoundManager : MonoBehaviour
 
     private Bank masterBank;
 
+    public bool playMusic;
+
         // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +41,11 @@ public class SoundManager : MonoBehaviour
 
         bumpInstance = RuntimeManager.CreateInstance(bumpEvent);
         discoMusic = RuntimeManager.CreateInstance(musicEvent);
+
+        if (!playMusic)
+        {
+            return;
+        }
 
         discoMusic.setParameterByName("Music", 1);
 
@@ -71,10 +78,18 @@ public class SoundManager : MonoBehaviour
                 {
                     bumpInstance.setParameterByName("ThingBumped", 0);
                 } break;
+            case 1:
+                {
+                    bumpInstance.setParameterByName("ThingBumped", 1);
+                }
+                break;
+            case 2:
+                {
+                    bumpInstance.setParameterByName("ThingBumped", 2);
+                }
+                break;
         }
-
         bumpInstance.start();
-
-        bumpInstance.release();
+        
     }
 }
