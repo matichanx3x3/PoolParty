@@ -11,7 +11,9 @@ public enum TypeZones
     DanceZone,
 }
 
-[Serializable]public class ZonePoint
+
+[Serializable]
+public class ZonePoint
 {
     public int maxCustomer;
     public int actualCustomer;
@@ -36,8 +38,8 @@ public enum TypeZones
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
-
+    public static GameManager Instance; 
+    public List<GameObject> CustomerPrefabs;
     public List<ZonesCap> capZones;
     [SerializeField] GameObject npcPrefab;
     [SerializeField] List<Transform> spawnPoints; //Puntos de instancia
@@ -130,8 +132,8 @@ public class GameManager : MonoBehaviour
         var randomNumberForSpawn = UnityEngine.Random.Range(0, doorPoints.Count);
         var spawn = spawnPoints[randomNumberForSpawn];
         var door = doorPoints[randomNumberForSpawn];
-
-        var go = Instantiate(npcPrefab, spawn.position, Quaternion.identity);
+        var randomIndex = UnityEngine.Random.Range(0, CustomerPrefabs.Count);
+        var go = Instantiate(CustomerPrefabs[randomIndex], spawn.position, Quaternion.identity);
         var npcB = go.GetComponent<NPCBehavior>();
 
         npcB.BeignSpawned(door.transform);
