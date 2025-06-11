@@ -70,7 +70,7 @@ public class GuardLaunch : MonoBehaviour
             scale = 1;
         }
 
-        flecha.transform.localScale = new Vector3 (flecha.transform.localScale.x,scale, flecha.transform.localScale.z);
+        flecha.transform.localScale = new Vector3 (flecha.transform.localScale.x * (scale/3),scale, flecha.transform.localScale.z);
 
         flecha.SetActive(true);
 
