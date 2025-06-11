@@ -3540,6 +3540,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4885332814062001758, guid: bf9f773bd6ebc448cb7fdef1e043f2f1, type: 3}
+      propertyPath: m_SortingOrder
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 5527249552094177143, guid: bf9f773bd6ebc448cb7fdef1e043f2f1, type: 3}
       propertyPath: m_Name
       value: Guardia
