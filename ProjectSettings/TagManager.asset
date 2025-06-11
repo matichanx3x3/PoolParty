@@ -8,6 +8,7 @@ TagManager:
   - Clients
   - Door
   - Angry
+  - Guard
   layers:
   - Default
   - TransparentFX

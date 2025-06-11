@@ -19,7 +19,7 @@ public class GuardLaunch : MonoBehaviour
     [SerializeField] private float maxDistanceToApplyMaxForce = 10;
     [SerializeField] private float minDistanceToLaunch = 0.2f;
     [SerializeField] private float maxForceToLaunch = 10;
-    [SerializeField] private float friccion;
+    [SerializeField] private float maxArrowDistance = 10;
 
     [Header("States")]
     [SerializeField, ReadOnly] private bool isDragged;
@@ -63,7 +63,7 @@ public class GuardLaunch : MonoBehaviour
         mouseWorldPosition = InputManager.Instance.cameraUsed.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPosition.z = 0;
 
-        float scale = CalculateCurrentForce() * maxForceToLaunch / 50 ;
+        float scale = CalculateArrow();
 
         if(scale <= 2)
         {
@@ -91,7 +91,6 @@ public class GuardLaunch : MonoBehaviour
 
     private void LaunchGuard()
     {
-
         Vector3 finalPosition = this.transform.position - mouseWorldPosition;
 
         finalPosition.z = 0;
@@ -114,7 +113,25 @@ public class GuardLaunch : MonoBehaviour
             distance = maxDistanceToApplyMaxForce;
         }
         
-        float forceToApply = distance * maxForceToLaunch;
+        float forceToApply = (distance/maxDistanceToApplyMaxForce) * maxForceToLaunch;
+
+        return forceToApply;
+    }
+    private float CalculateArrow()
+    {
+        float distance = Vector3.Distance(this.transform.position, mouseWorldPosition);
+
+        if (distance < minDistanceToLaunch)
+        {
+            distance = 0;
+        }
+        if (distance > maxDistanceToApplyMaxForce)
+        {
+            distance = maxDistanceToApplyMaxForce;
+        }
+
+        float forceToApply = (distance / maxDistanceToApplyMaxForce) * maxArrowDistance;
+        Debug.Log("ArrowDistance: " + forceToApply);
 
         return forceToApply;
     }
