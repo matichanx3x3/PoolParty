@@ -43,10 +43,10 @@ MonoBehaviour:
   Path: ../../FMOD Studio/Pool Party/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638852579813990477
+  lastModified: 638852625661518560
   FileSizes:
   - Name: 
-    Value: 1734
+    Value: 1736
   Exists: 1
 --- !u!114 &-8122949249425298574
 MonoBehaviour:
@@ -238,7 +238,7 @@ MonoBehaviour:
   Path: ../../FMOD Studio/Pool Party/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638852579813970062
+  lastModified: 638852625661508048
   FileSizes: []
   Exists: 1
 --- !u!114 &-134820213899867568
@@ -256,7 +256,7 @@ MonoBehaviour:
   Path: ../../FMOD Studio/Pool Party/Build/Desktop/Fx.bank
   Name: Fx
   StudioPath: bank:/Fx
-  lastModified: 638852571086235674
+  lastModified: 638852599277166694
   FileSizes: []
   Exists: 1
 --- !u!114 &11400000
@@ -291,12 +291,13 @@ MonoBehaviour:
   - {fileID: 7068976704588752785}
   - {fileID: 7996338960926451024}
   - {fileID: 6132382812431199385}
+  - {fileID: 680041556632050548}
   MasterBanks:
   - {fileID: -429123153829790298}
   StringsBanks:
   - {fileID: -8427102456239117698}
   cacheVersion: 131847
-  cacheTime: 638852579813990477
+  cacheTime: 638852642973896360
   SerializableEventsDict:
   - key: event:/Ambience/PeopleEvent
     index: 0
@@ -332,6 +333,30 @@ MonoBehaviour:
   ID:
     data1: 1741128988
     data2: 1426219780
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &680041556632050548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Padding
+  m_EditorClassIdentifier: 
+  Name: Padding
+  StudioPath: parameter:/Padding
+  Min: 0
+  Max: 1
+  Default: 0.7
+  ID:
+    data1: 3604104461
+    data2: 3585246403
   Type: 0
   IsGlobal: 1
   Labels: []
@@ -375,7 +400,7 @@ MonoBehaviour:
   Path: ../../FMOD Studio/Pool Party/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638852574241734538
+  lastModified: 638852642973896360
   FileSizes: []
   Exists: 1
 --- !u!114 &3862918348286491178
@@ -443,9 +468,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/MusicLoopEvent/Muffing
+  m_Name: parameter:/MusicLoopEvent/Padding
   m_EditorClassIdentifier: 
-  Name: Muffing
+  Name: Padding
   StudioPath: 
   Min: 0
   Max: 1
@@ -454,7 +479,7 @@ MonoBehaviour:
     data1: 3604104461
     data2: 3585246403
   Type: 0
-  IsGlobal: 0
+  IsGlobal: 1
   Labels: []
   Exists: 1
 --- !u!114 &6132382812431199385
