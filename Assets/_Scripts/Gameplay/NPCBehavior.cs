@@ -49,6 +49,8 @@ public class NPCBehavior : MonoBehaviour
 
     public Rigidbody2D rb;
     public Collider2D col2D;
+    public SpriteRenderer actualEye;
+    public List<Sprite> eyeList;
 
     void Start()
     {
