@@ -6,6 +6,7 @@ public class BouncingBehaviour : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb2D;
     [SerializeField] private float forceTrasmited = 0.7f;
+    [SerializeField] private float bounceLoseness = 0.6f;
     private Vector2 lastVelocity;
 
     // Start is called before the first frame update
@@ -31,7 +32,7 @@ public class BouncingBehaviour : MonoBehaviour
         {
             Vector2 normal = collision.GetContact(0).normal;
             Vector2 reflected = Vector2.Reflect(lastVelocity.normalized, normal);
-            rb2D.velocity = reflected * lastVelocity.magnitude;
+            rb2D.velocity = reflected * lastVelocity.magnitude * bounceLoseness;
 
             SoundManager.Instance.PlayBump(0);
         }

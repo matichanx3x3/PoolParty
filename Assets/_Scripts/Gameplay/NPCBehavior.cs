@@ -37,6 +37,7 @@ public class NPC
 
 public class NPCBehavior : MonoBehaviour
 {
+    public GameObject target;
     public NPC npc;
     public static event Action<NPCBehavior> OnNPCRequestDespawn;
     [SerializeField] Transform directionToMove;
@@ -144,7 +145,33 @@ public class NPCBehavior : MonoBehaviour
 
     public void DoProblematicRoutine()
     {
+        Debug.Log("Lanzandose");
+        this.transform.tag = "Angry";
         //si el npc se ha convertido en un problematico, se le asigna su rutina modificada de Borracho, Euforico, Problematico.
+        actualEye.sprite = eyeList[2];
+
+        RaycastHit2D[] outHit =  Physics2D.CircleCastAll(this.transform.position,10f,Vector2.zero);
+
+        target = null;
+        if(outHit.Length > 0 && outHit != null)
+        {
+            for (int i = 0; i < outHit.Length; i++)
+            {
+                if (outHit[i].transform.CompareTag("Clients"))
+                {
+                    target = outHit[i].transform.gameObject;
+                    break;
+                }
+                target = null;
+            }
+        }
+
+        if(target != null)
+        {
+            Debug.Log("Lanzandose pt 2");
+            rb.AddForce((target.transform.position - this.transform.position).normalized * 4, ForceMode2D.Impulse);
+        }
+
     }
 
     public void Timer()

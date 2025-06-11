@@ -494,6 +494,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 484551733}
     m_Modifications:
+    - target: {fileID: 6770899594567653624, guid: b8e058e67e9704831821e2735a8e3eae, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: e889ff5fbef010448a9fc4c80b0c3066, type: 2}
     - target: {fileID: 8528357550724830632, guid: b8e058e67e9704831821e2735a8e3eae, type: 3}
       propertyPath: m_Name
       value: Walls (1)
@@ -1102,6 +1106,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 484551733}
     m_Modifications:
+    - target: {fileID: 6770899594567653624, guid: b8e058e67e9704831821e2735a8e3eae, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: e889ff5fbef010448a9fc4c80b0c3066, type: 2}
     - target: {fileID: 8528357550724830632, guid: b8e058e67e9704831821e2735a8e3eae, type: 3}
       propertyPath: m_Name
       value: Walls (3)
@@ -1337,6 +1345,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 484551733}
     m_Modifications:
+    - target: {fileID: 6770899594567653624, guid: b8e058e67e9704831821e2735a8e3eae, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: e889ff5fbef010448a9fc4c80b0c3066, type: 2}
     - target: {fileID: 8528357550724830632, guid: b8e058e67e9704831821e2735a8e3eae, type: 3}
       propertyPath: m_Name
       value: Walls (2)
@@ -3181,6 +3193,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3804142907090510479, guid: bf9f773bd6ebc448cb7fdef1e043f2f1, type: 3}
+      propertyPath: maxForceToLaunch
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4575808100034981107, guid: bf9f773bd6ebc448cb7fdef1e043f2f1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.39
@@ -3384,6 +3400,10 @@ PrefabInstance:
     - target: {fileID: 1304270182103347410, guid: c29ee598bc1b94aa8ad4eb14f7d847dc, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4119137222690302778, guid: c29ee598bc1b94aa8ad4eb14f7d847dc, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7234770210086701843, guid: c29ee598bc1b94aa8ad4eb14f7d847dc, type: 3}
       propertyPath: m_Name
@@ -3902,6 +3922,8 @@ MonoBehaviour:
   normalConsumers: []
   problematicConsumers: []
   spawnInterval: 15
+  cameras:
+  - {fileID: 0}
 --- !u!1 &1991919088
 GameObject:
   m_ObjectHideFlags: 0
@@ -3988,6 +4010,10 @@ PrefabInstance:
     - target: {fileID: 1304270182103347410, guid: c29ee598bc1b94aa8ad4eb14f7d847dc, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4119137222690302778, guid: c29ee598bc1b94aa8ad4eb14f7d847dc, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7234770210086701843, guid: c29ee598bc1b94aa8ad4eb14f7d847dc, type: 3}
       propertyPath: m_Name
@@ -4161,6 +4187,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BarSpace
       objectReference: {fileID: 0}
+    - target: {fileID: 8103842453301721244, guid: 1ee0e8ce5bdef4873b912bad4588b7cc, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: e889ff5fbef010448a9fc4c80b0c3066, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4342,6 +4372,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DJ
       objectReference: {fileID: 0}
+    - target: {fileID: 6959305029778841808, guid: 55bfb3448844e4cae89819f4009db2dc, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: e889ff5fbef010448a9fc4c80b0c3066, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4479,6 +4513,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 484551733}
     m_Modifications:
+    - target: {fileID: 6770899594567653624, guid: b8e058e67e9704831821e2735a8e3eae, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: e889ff5fbef010448a9fc4c80b0c3066, type: 2}
     - target: {fileID: 8528357550724830632, guid: b8e058e67e9704831821e2735a8e3eae, type: 3}
       propertyPath: m_Name
       value: Walls
