@@ -459,6 +459,16 @@ public class NPCBehavior : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        {
+            if (collision.transform.CompareTag("Door"))
+            {
+                if (isGoingKicked) DespawnMe();
+            }
+        }
+    }
+
     private void ReactToGuardHit(Collision2D collision)
     {
 
