@@ -185,7 +185,12 @@ public class GameManager : MonoBehaviour
 
         return freePoint.point;
     }
-    
+
+    public Transform GetExitDoor()
+    {
+        int randomIndex = UnityEngine.Random.Range(0, doorPoints.Count);
+        return doorPoints[randomIndex];
+    }
 
     void GameOver()
     {

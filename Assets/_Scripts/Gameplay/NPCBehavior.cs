@@ -55,13 +55,13 @@ public class NPCBehavior : MonoBehaviour
 
     }
 
-     // Llamado desde GameManager justo tras Instantiate
+    // Llamado desde GameManager justo tras Instantiate
     public void BeignSpawned(Transform doorTransform)
     {
-        
+
         if (moveCoroutine != null)
             StopCoroutine(moveCoroutine);
-        
+
         moveCoroutine = StartCoroutine(MoveToPoint(doorTransform.position, OnArrivedAtDoor));
     }
 
@@ -71,8 +71,8 @@ public class NPCBehavior : MonoBehaviour
         while ((transform.position - targetPos).sqrMagnitude > 0.01f)
         {
             transform.position = Vector3.MoveTowards(
-                transform.position, 
-                targetPos, 
+                transform.position,
+                targetPos,
                 moveSpeed * Time.deltaTime
             );
             yield return null;
@@ -107,7 +107,7 @@ public class NPCBehavior : MonoBehaviour
     {
         if (moveCoroutine != null)
             StopCoroutine(moveCoroutine);
-        
+
         moveCoroutine = StartCoroutine(MoveToPoint(pointToGoTransform.position, DoRoutine));
     }
 
@@ -126,10 +126,10 @@ public class NPCBehavior : MonoBehaviour
 
     public void AddSerMolestado()
     {
-        npc.nroSerMolestado ++;
+        npc.nroSerMolestado++;
         AddMolestiaPoints();
     }
-    
+
     public void DoProblematicRoutine()
     {
         //si el npc se ha convertido en un problematico, se le asigna su rutina modificada de Borracho, Euforico, Problematico.
@@ -193,7 +193,7 @@ public class NPCBehavior : MonoBehaviour
         RequestZoneFromManager();
 
     }
-    
+
     private (NPCRole role, TypeZones zone) VerifyZoneAvailability(NPCRole desiredRole)
     {
         // rol -> zona, diccionario temporal
@@ -226,7 +226,36 @@ public class NPCBehavior : MonoBehaviour
 
     void inTransition()
     {
-        //realiza la animacion de si se va a ir o se vuelve problematico.
-        print("deciciendo cual ser");
+        npc.inTransition = true;
+
+        if (npc.satisfaccion <= 30)
+        {
+            npc.isProblematic = true;
+
+            switch (npc.role)
+            {
+                case NPCRole.Social:
+                    npc.mood = NPCMood.Peleador;
+                    break;
+                case NPCRole.Bebedor:
+                    npc.mood = NPCMood.Borracho;
+                    break;
+                case NPCRole.Bailador:
+                    npc.mood = NPCMood.Euforico;
+                    break;
+            }
+
+            print($"NPC se volvió problemático: {npc.mood}");
+
+            DoProblematicRoutine();
+        }
+        else if (npc.satisfaccion >= 70)
+        {
+            Transform door = GameManager.Instance.GetExitDoor();
+            if (moveCoroutine != null)
+                StopCoroutine(moveCoroutine);
+            moveCoroutine = StartCoroutine(MoveToPoint(door.position, DespawnMe));
+        }
     }
+
 }
