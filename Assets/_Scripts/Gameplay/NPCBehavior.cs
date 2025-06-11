@@ -227,8 +227,9 @@ public class NPCBehavior : MonoBehaviour
     void inTransition()
     {
         npc.inTransition = true;
+        int randomChance = UnityEngine.Random.Range(0, npc.MaxSatisfaccion);
 
-        if (npc.satisfaccion <= 30)
+        if (randomChance <= npc.molestia)
         {
             npc.isProblematic = true;
 
@@ -249,7 +250,7 @@ public class NPCBehavior : MonoBehaviour
 
             DoProblematicRoutine();
         }
-        else if (npc.satisfaccion >= 70)
+        else
         {
             Transform door = GameManager.Instance.GetExitDoor();
             if (moveCoroutine != null)
