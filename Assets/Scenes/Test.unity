@@ -5109,6 +5109,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canva
       objectReference: {fileID: 0}
+    - target: {fileID: 2806675211431014953, guid: 8aea89d69c69a8f4cbe94727cd8b9df1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2963934590784699927, guid: 8aea89d69c69a8f4cbe94727cd8b9df1, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.7
@@ -7791,6 +7795,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionsUI: {fileID: 323223827}
+  t1: {fileID: 714129547}
+  t2: {fileID: 43031517}
+  t3: {fileID: 1531468405}
+  t4: {fileID: 709336550}
+  tutorialCanva: {fileID: 2140969215}
+  mainOptions: {fileID: 291018820}
+  musicOptions: {fileID: 672145419}
+  isPaused: 0
   CustomerPrefabs:
   - {fileID: 4584948137360014277, guid: ed911173050fa824795fbc3444a67d55, type: 3}
   - {fileID: 5741009254683913542, guid: c5c1cd191b710fe4a81970155061fc59, type: 3}
@@ -8381,6 +8393,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 291018820}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &2094109133
 MonoBehaviour:

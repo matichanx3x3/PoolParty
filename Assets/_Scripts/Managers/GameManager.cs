@@ -39,6 +39,13 @@ public class ZonePoint
 public class GameManager : MonoBehaviour
 {
     public GameObject optionsUI;
+    public GameObject t1;
+    public GameObject t2;
+    public GameObject t3;
+    public GameObject t4;
+    public GameObject tutorialCanva;
+    public GameObject mainOptions;
+    public GameObject musicOptions;
     public bool isPaused = false;
     public static GameManager Instance; 
     public List<GameObject> CustomerPrefabs;
@@ -90,8 +97,21 @@ public class GameManager : MonoBehaviour
 
     public void OpenOptionsMenu(bool value)
     {
+        ResetTutorial();
         isPaused = value;
         optionsUI.SetActive(value);
+    }
+
+    private void ResetTutorial()
+    {
+        t1.SetActive(true);
+        t2.SetActive(false);
+        t3.SetActive(false);
+        t4.SetActive(false);
+        tutorialCanva.SetActive(false);
+        mainOptions.SetActive(true);
+        musicOptions.SetActive(false);
+
     }
 
     private IEnumerator SpawnLoop()
