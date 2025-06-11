@@ -76,16 +76,11 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnLoop());
-        
-            Debug.Log("Cambiando cámara....");
-            CameraSwap(cameras[0], cameras[1]);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-        }
+
     }
 
     private IEnumerator SpawnLoop()
