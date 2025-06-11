@@ -75,10 +75,7 @@ public class SoundManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            ChangeMusic();
-        }
+        
     }
 
     public void ChangeMusic()
