@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 2043001640279122980}
   - component: {fileID: 7573604089206923074}
   - component: {fileID: -3077441132496856272}
+  - component: {fileID: 8371821455045770471}
   m_Layer: 0
   m_Name: Ronald
   m_TagString: Untagged
@@ -295,3 +296,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.1}
   serializedVersion: 2
   m_Radius: 0.65
+--- !u!114 &8371821455045770471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6121782925396004847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0417ec4f8cccb204c864463c9ce02236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb2D: {fileID: 0}
+  forceTrasmited: 0.7

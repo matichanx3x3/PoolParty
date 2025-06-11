@@ -1,5 +1,25 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8585098810763804015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Pool Party/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638852662287744767
+  FileSizes:
+  - Name: 
+    Value: 1736
+  Exists: 1
 --- !u!114 &-8487695245265171349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27,26 +47,6 @@ MonoBehaviour:
   - Bridge
   - AllSong
   - LoopB
-  Exists: 1
---- !u!114 &-8427102456239117698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: ../../FMOD Studio/Pool Party/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638852625661518560
-  FileSizes:
-  - Name: 
-    Value: 1736
   Exists: 1
 --- !u!114 &-8122949249425298574
 MonoBehaviour:
@@ -142,7 +142,7 @@ MonoBehaviour:
     Data3: -1025095757
     Data4: 644584398
   Banks:
-  - {fileID: -134820213899867568}
+  - {fileID: 4341524357818277619}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -151,6 +151,24 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-3220713629620329012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Music.bank
+  m_EditorClassIdentifier: 
+  Path: Pool Party/Build/Desktop/Music.bank
+  Name: Music
+  StudioPath: bank:/Music
+  lastModified: 638852662287949154
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-3183812452910292702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +188,7 @@ MonoBehaviour:
     Data3: -649378432
     Data4: 780799628
   Banks:
-  - {fileID: 3561411970941452849}
+  - {fileID: -3220713629620329012}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -178,6 +196,24 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-2326759924114037112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Ambience.bank
+  m_EditorClassIdentifier: 
+  Path: Pool Party/Build/Desktop/Ambience.bank
+  Name: Ambience
+  StudioPath: bank:/Ambience
+  lastModified: 638852662287726816
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-1644526557945092518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,7 +233,7 @@ MonoBehaviour:
     Data3: 122918820
     Data4: 1083574885
   Banks:
-  - {fileID: -429123153829790298}
+  - {fileID: 608470579515898314}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -205,60 +241,6 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
---- !u!114 &-1191271593427249178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Ambience.bank
-  m_EditorClassIdentifier: 
-  Path: ../../FMOD Studio/Pool Party/Build/Desktop/Ambience.bank
-  Name: Ambience
-  StudioPath: bank:/Ambience
-  lastModified: 638851859035327776
-  FileSizes: []
-  Exists: 1
---- !u!114 &-429123153829790298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: ../../FMOD Studio/Pool Party/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638852625661508048
-  FileSizes: []
-  Exists: 1
---- !u!114 &-134820213899867568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Fx.bank
-  m_EditorClassIdentifier: 
-  Path: ../../FMOD Studio/Pool Party/Build/Desktop/Fx.bank
-  Name: Fx
-  StudioPath: bank:/Fx
-  lastModified: 638852599277166694
-  FileSizes: []
-  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,11 +254,11 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -8427102456239117698}
-  - {fileID: -1191271593427249178}
-  - {fileID: -134820213899867568}
-  - {fileID: -429123153829790298}
-  - {fileID: 3561411970941452849}
+  - {fileID: -8585098810763804015}
+  - {fileID: -2326759924114037112}
+  - {fileID: 4341524357818277619}
+  - {fileID: 608470579515898314}
+  - {fileID: -3220713629620329012}
   EditorEvents:
   - {fileID: 3862918348286491178}
   - {fileID: -4236320445279205935}
@@ -293,11 +275,11 @@ MonoBehaviour:
   - {fileID: 6132382812431199385}
   - {fileID: 680041556632050548}
   MasterBanks:
-  - {fileID: -429123153829790298}
+  - {fileID: 608470579515898314}
   StringsBanks:
-  - {fileID: -8427102456239117698}
+  - {fileID: -8585098810763804015}
   cacheVersion: 131847
-  cacheTime: 638852642973896360
+  cacheTime: 638852662287949154
   SerializableEventsDict:
   - key: event:/Ambience/PeopleEvent
     index: 0
@@ -336,6 +318,24 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Labels: []
+  Exists: 1
+--- !u!114 &608470579515898314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Pool Party/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638852662287741985
+  FileSizes: []
   Exists: 1
 --- !u!114 &680041556632050548
 MonoBehaviour:
@@ -385,24 +385,6 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &3561411970941452849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Music.bank
-  m_EditorClassIdentifier: 
-  Path: ../../FMOD Studio/Pool Party/Build/Desktop/Music.bank
-  Name: Music
-  StudioPath: bank:/Music
-  lastModified: 638852642973896360
-  FileSizes: []
-  Exists: 1
 --- !u!114 &3862918348286491178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,7 +404,7 @@ MonoBehaviour:
     Data3: 339368851
     Data4: 1129488158
   Banks:
-  - {fileID: -1191271593427249178}
+  - {fileID: -2326759924114037112}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -450,7 +432,7 @@ MonoBehaviour:
     Data3: 1687066497
     Data4: -552353553
   Banks:
-  - {fileID: -429123153829790298}
+  - {fileID: 608470579515898314}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -458,6 +440,24 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &4341524357818277619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Fx.bank
+  m_EditorClassIdentifier: 
+  Path: Pool Party/Build/Desktop/Fx.bank
+  Name: Fx
+  StudioPath: bank:/Fx
+  lastModified: 638852662287732182
+  FileSizes: []
+  Exists: 1
 --- !u!114 &5510418414535845251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -525,7 +525,7 @@ MonoBehaviour:
     Data3: -618271841
     Data4: -1766809746
   Banks:
-  - {fileID: 3561411970941452849}
+  - {fileID: -3220713629620329012}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -601,7 +601,7 @@ MonoBehaviour:
     Data3: -1364988527
     Data4: -622372823
   Banks:
-  - {fileID: 3561411970941452849}
+  - {fileID: -3220713629620329012}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0

@@ -52,7 +52,7 @@ public class NPCBehavior : MonoBehaviour
 
     void Start()
     {
-        
+
     }
     void Update()
     {
@@ -119,7 +119,7 @@ public class NPCBehavior : MonoBehaviour
     {
         //rutinas de si es social, bebedor o bailador. todos siempre con el mood NORMAL
         print("Hago mi rutina designada " + npc.role);
-
+        col2D.isTrigger = false;
         Timer();
     }
 
@@ -261,6 +261,50 @@ public class NPCBehavior : MonoBehaviour
                 StopCoroutine(moveCoroutine);
             moveCoroutine = StartCoroutine(MoveToPoint(door.position, DespawnMe));
         }
+    }
+
+     private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // 1) Si choca con el guardia (que impulsa usando física):
+        var guard = collision.collider.GetComponent<GuardLaunch>();
+        if (guard != null)
+        {
+            ReactToGuardHit(collision);
+        }
+
+        // 2) Si es la puerta al salir:
+        if (collision.collider.CompareTag("Door"))
+        {
+            if (isGoingKicked) DespawnMe();
+            else GenerateNewConsumer();
+        }
+    }
+
+    private void ReactToGuardHit(Collision2D collision)
+    {
+        // --- LA FÍSICA ya la aplica el GuardLaunch (con AddForce/velocity) ---
+
+        // 1) Aumentar molestia en un 5% de MaxSatisfaccion
+        int delta = Mathf.CeilToInt(npc.MaxSatisfaccion * 0.05f);
+        npc.molestia += delta;
+
+        // 2) Aumentar número de veces molestado
+        npc.nroSerMolestado++;
+
+        // 3) Recalcular satisfaccion
+        npc.satisfaccion = Mathf.Max(0, npc.MaxSatisfaccion - npc.molestia);
+
+        // 4) (Opcional) Si baja de cierto umbral, pasarlo a problemático
+        if (!npc.isProblematic && npc.satisfaccion <= npc.MaxSatisfaccion * 0.5f)
+        {
+            npc.isProblematic = true;
+            npc.mood = NPCMood.Borracho; // o el que prefieras
+            // Lanza animación, corrutina de rutina problemática, etc.
+            DoProblematicRoutine();
+        }
+
+        // 5) Feedback visual o sonoro
+        // e.g. animator.SetTrigger("HitByGuard");
     }
 
 }

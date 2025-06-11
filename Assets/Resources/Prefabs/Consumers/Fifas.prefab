@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: -4493200370185520024}
   - component: {fileID: -8469261150320709728}
   - component: {fileID: -4550138755856807214}
+  - component: {fileID: 7161115038955992029}
   m_Layer: 0
   m_Name: Fifas
   m_TagString: Untagged
@@ -211,6 +212,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.1}
   serializedVersion: 2
   m_Radius: 0.65
+--- !u!114 &7161115038955992029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5741009254683913542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0417ec4f8cccb204c864463c9ce02236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb2D: {fileID: 0}
+  forceTrasmited: 0.7
 --- !u!1 &7460343604421375825
 GameObject:
   m_ObjectHideFlags: 0
