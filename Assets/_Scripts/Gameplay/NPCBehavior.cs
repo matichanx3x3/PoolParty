@@ -129,7 +129,7 @@ public class NPCBehavior : MonoBehaviour
     {
         npc.molestia += 5;
         npc.satisfaccion = npc.MaxSatisfaccion - npc.molestia;
-        
+
         if (!npc.isProblematic && npc.nroSerMolestado >= 3)
         {
             inTransition();
@@ -168,29 +168,25 @@ public class NPCBehavior : MonoBehaviour
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0f;
 
-        rb.bodyType = RigidbodyType2D.Kinematic; // Para evitar que se vea afectado por física externa.
+        rb.bodyType = RigidbodyType2D.Kinematic;
         rb.simulated = false;
+        canMove = false;
 
-        //detenga todo movimiento alguno, despues de un par de segundos ya tiene el rb activo de nuevo (para realizar lo que decida)
 
+        StartCoroutine(ResumeAfterDelay(2f));
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    private IEnumerator ResumeAfterDelay(float delay)
     {
-        if (collision.CompareTag("Door"))
-        {
-            switch (isGoingKicked)
-            {
-                case true:
-                    DespawnMe();
-                    break;
-                case false:
-                    GenerateNewConsumer();
-                    break;
-            }
-        }
+        yield return new WaitForSeconds(delay);
 
+        rb.simulated = true;
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        canMove = true;
+
+        ContinueTransition();
     }
+
 
     void DespawnMe()
     {
@@ -245,12 +241,14 @@ public class NPCBehavior : MonoBehaviour
 
     void inTransition()
     {
-        ResetMovement();
-        print("algo esta pasando aaah");
         npc.inTransition = true;
+        ResetMovement(); // Detiene y luego reanudará con ContinueTransition()
+    }
+
+    void ContinueTransition()
+    {
         int randomChance = UnityEngine.Random.Range(0, npc.MaxSatisfaccion);
 
-        //despues de X hara esto
         if (randomChance <= npc.molestia)
         {
             npc.isProblematic = true;
@@ -269,22 +267,26 @@ public class NPCBehavior : MonoBehaviour
             }
 
             print($"NPC se volvió problemático: {npc.mood}");
-
             DoProblematicRoutine();
         }
         else
         {
             Transform door = GameManager.Instance.GetExitDoor();
+
             if (moveCoroutine != null)
                 StopCoroutine(moveCoroutine);
+
             moveCoroutine = StartCoroutine(MoveToPoint(door.position, DespawnMe));
         }
+
         npc.inTransition = false;
     }
 
-     private void OnCollisionEnter2D(Collision2D collision)
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+
         var guard = collision.collider.GetComponent<GuardLaunch>();
         if (guard != null)
         {
