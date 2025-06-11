@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{0001e9d9-7de0-4f87-a923-6cbb017dd037}">
+		<property name="name">
+			<value>SongStage</value>
+		</property>
+		<relationship name="folder">
+			<destination>{3a78a396-73bc-4a44-9788-16b546d0a0ce}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{63e353d6-a860-4423-9e6d-d6ab845f1cbd}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{63e353d6-a860-4423-9e6d-d6ab845f1cbd}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>4</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>LoopA</value>
+			<value>Bridge</value>
+			<value>AllSong</value>
+			<value>LoopB</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

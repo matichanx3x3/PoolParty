@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{848061d3-a214-4456-b19f-5be0e681db42}">
+		<property name="assetPath">
+			<value>Music/DavidKBD - Electric Pulse - 10 - Synthetic Power Surge-full.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>233.73913832199545</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7b49bb0e-8061-4f11-a8aa-8c596e46b701}</destination>
+		</relationship>
+	</object>
+</objects>

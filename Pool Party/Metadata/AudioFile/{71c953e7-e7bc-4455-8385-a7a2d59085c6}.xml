@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{71c953e7-e7bc-4455-8385-a7a2d59085c6}">
+		<property name="assetPath">
+			<value>Music/DavidKBD - Electric Pulse - 05 - Neon Arcadia Awakening-full.ogg</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>214.9565306122449</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7b49bb0e-8061-4f11-a8aa-8c596e46b701}</destination>
+		</relationship>
+	</object>
+</objects>

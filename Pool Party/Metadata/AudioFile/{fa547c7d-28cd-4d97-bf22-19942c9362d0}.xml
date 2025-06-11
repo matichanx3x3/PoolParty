@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{fa547c7d-28cd-4d97-bf22-19942c9362d0}">
+		<property name="assetPath">
+			<value>FX/Audio/Bump.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.26308390022675737</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7b49bb0e-8061-4f11-a8aa-8c596e46b701}</destination>
+		</relationship>
+	</object>
+</objects>

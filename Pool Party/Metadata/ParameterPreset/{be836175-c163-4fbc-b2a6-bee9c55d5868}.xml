@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{be836175-c163-4fbc-b2a6-bee9c55d5868}">
+		<property name="name">
+			<value>ThingBumped</value>
+		</property>
+		<relationship name="folder">
+			<destination>{3a78a396-73bc-4a44-9788-16b546d0a0ce}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{ba6fcf82-3233-41ec-8386-322ff4f9895b}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{ba6fcf82-3233-41ec-8386-322ff4f9895b}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>3</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>Static</value>
+			<value>AngryConsumer</value>
+			<value>NormalConsumer</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

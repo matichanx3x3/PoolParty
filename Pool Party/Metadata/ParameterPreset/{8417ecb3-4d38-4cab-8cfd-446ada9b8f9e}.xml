@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{8417ecb3-4d38-4cab-8cfd-446ada9b8f9e}">
+		<property name="name">
+			<value>AmbienceVolume</value>
+		</property>
+		<relationship name="folder">
+			<destination>{3a78a396-73bc-4a44-9788-16b546d0a0ce}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{43e2789f-d236-40ad-b608-ea68ce71d6b4}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{43e2789f-d236-40ad-b608-ea68ce71d6b4}">
+		<property name="maximum">
+			<value>100</value>
+		</property>
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>84.158415841584159</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>

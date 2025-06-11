@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="MixerGroup" id="{2b3f8b20-a8f8-4206-a9bf-e56b6a381118}">
+		<property name="name">
+			<value>Ambience</value>
+		</property>
+		<relationship name="automators">
+			<destination>{d899f339-e4d7-447f-9f6d-26b5a33315e1}</destination>
+		</relationship>
+		<relationship name="effectChain">
+			<destination>{ee5a247f-736f-4132-aeaa-a255fb705cc4}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{f47c8e5e-c2e0-4302-b87f-868a3900bd77}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{d8aae968-0966-4c7c-8a50-4406c2b3b7af}</destination>
+		</relationship>
+	</object>
+	<object class="Automator" id="{d899f339-e4d7-447f-9f6d-26b5a33315e1}">
+		<property name="nameOfPropertyBeingAutomated">
+			<value>volume</value>
+		</property>
+		<relationship name="automationCurves">
+			<destination>{95ea187f-83fe-43cb-abe2-1dd57ff9d415}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{ee5a247f-736f-4132-aeaa-a255fb705cc4}">
+		<relationship name="effects">
+			<destination>{ec30e473-69d0-4890-8d21-0bfdb17d358c}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{f47c8e5e-c2e0-4302-b87f-868a3900bd77}" />
+	<object class="AutomationCurve" id="{95ea187f-83fe-43cb-abe2-1dd57ff9d415}">
+		<relationship name="parameter">
+			<destination>{43e2789f-d236-40ad-b608-ea68ce71d6b4}</destination>
+		</relationship>
+		<relationship name="automationPoints">
+			<destination>{d1663c54-359f-4f63-a7b9-57904d636a9b}</destination>
+			<destination>{13b39249-8130-4501-a9ea-b8768eaaca8d}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusFader" id="{ec30e473-69d0-4890-8d21-0bfdb17d358c}" />
+	<object class="AutomationPoint" id="{d1663c54-359f-4f63-a7b9-57904d636a9b}">
+		<property name="position">
+			<value>98.728813559322035</value>
+		</property>
+		<property name="value">
+			<value>7</value>
+		</property>
+	</object>
+	<object class="AutomationPoint" id="{13b39249-8130-4501-a9ea-b8768eaaca8d}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<property name="value">
+			<value>-80</value>
+		</property>
+		<property name="curveShape">
+			<value>-0.0125913499</value>
+		</property>
+	</object>
+</objects>

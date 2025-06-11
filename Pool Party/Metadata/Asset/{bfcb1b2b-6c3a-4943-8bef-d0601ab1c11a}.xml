@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="EncodableAsset" id="{bfcb1b2b-6c3a-4943-8bef-d0601ab1c11a}">
+		<property name="assetPath">
+			<value>FX/Punch/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7b49bb0e-8061-4f11-a8aa-8c596e46b701}</destination>
+		</relationship>
+	</object>
+</objects>
