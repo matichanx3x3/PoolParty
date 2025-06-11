@@ -39,7 +39,7 @@ public class ZonePoint
 public class GameManager : MonoBehaviour
 {
     public GameObject optionsUI;
-
+    public bool isPaused = false;
     public static GameManager Instance; 
     public List<GameObject> CustomerPrefabs;
     public List<ZonesCap> capZones;
@@ -84,12 +84,13 @@ public class GameManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            OpenOptionsMenu(true);
+            OpenOptionsMenu(!isPaused);
         }
     }
 
     public void OpenOptionsMenu(bool value)
     {
+        isPaused = value;
         optionsUI.SetActive(value);
     }
 
