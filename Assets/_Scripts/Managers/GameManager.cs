@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance; 
     public List<GameObject> CustomerPrefabs;
     public List<ZonesCap> capZones;
-    [SerializeField] GameObject npcPrefab;
+    //[SerializeField] GameObject npcPrefab;
     [SerializeField] List<Transform> spawnPoints; //Puntos de instancia
     [SerializeField] List<Transform> doorPoints;
     [SerializeField] int maxAforo = 20;

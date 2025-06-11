@@ -46,9 +46,13 @@ public class NPCBehavior : MonoBehaviour
 
     public float moveSpeed = 2f;
     private Coroutine moveCoroutine;
+
+    public Rigidbody2D rb;
+    public Collider2D col2D;
+
     void Start()
     {
-
+        
     }
     void Update()
     {
