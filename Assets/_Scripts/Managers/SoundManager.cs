@@ -60,6 +60,7 @@ public class SoundManager : MonoBehaviour
         discoMusic.setParameterByName("Music", 1);
 
         discoMusic.start();
+
     }
 
     private void SetSliders()

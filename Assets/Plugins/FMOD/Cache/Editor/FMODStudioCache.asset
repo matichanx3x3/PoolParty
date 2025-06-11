@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8585098810763804015
+--- !u!114 &-8939518758977160751
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,18 +9,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FX/BumpEvent
   m_EditorClassIdentifier: 
-  Path: Pool Party/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638852662287744767
-  FileSizes:
-  - Name: 
-    Value: 1736
-  Exists: 1
---- !u!114 &-8487695245265171349
+  Path: event:/FX/BumpEvent
+  Guid:
+    Data1: -1248228615
+    Data2: 1311838181
+    Data3: -1025095757
+    Data4: 644584398
+  Banks:
+  - {fileID: -5069209346129054364}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 4109666110109633748}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-8884051299041291930
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,7 +56,434 @@ MonoBehaviour:
   - AllSong
   - LoopB
   Exists: 1
---- !u!114 &-8122949249425298574
+--- !u!114 &-8596802990887879530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Ambience.bank
+  m_EditorClassIdentifier: 
+  Path: Pool Party/Build/Desktop/Ambience.bank
+  Name: Ambience
+  StudioPath: bank:/Ambience
+  lastModified: 638851859035327776
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-8342029381352373631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Menu
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Menu
+  Guid:
+    Data1: 569135593
+    Data2: 1248172384
+    Data3: -618271841
+    Data4: -1766809746
+  Banks:
+  - {fileID: -6114163343230879148}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -8884051299041291930}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 64000
+--- !u!114 &-8178586162728619290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: snapshot:/Defeat
+  m_EditorClassIdentifier: 
+  Path: snapshot:/Defeat
+  Guid:
+    Data1: 224718874
+    Data2: 1243163739
+    Data3: 122918820
+    Data4: 1083574885
+  Banks:
+  - {fileID: 2418130719765280253}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &-7082197673345713884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MusicLoopEvent/Padding
+  m_EditorClassIdentifier: 
+  Name: Padding
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0.7
+  ID:
+    data1: 3604104461
+    data2: 3585246403
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-6114163343230879148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Music.bank
+  m_EditorClassIdentifier: 
+  Path: Pool Party/Build/Desktop/Music.bank
+  Name: Music
+  StudioPath: bank:/Music
+  lastModified: 638852742183327157
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-5069209346129054364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Fx.bank
+  m_EditorClassIdentifier: 
+  Path: Pool Party/Build/Desktop/Fx.bank
+  Name: Fx
+  StudioPath: bank:/Fx
+  lastModified: 638852599277166694
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-3495065930652736776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/AmbienceVolume
+  m_EditorClassIdentifier: 
+  Name: AmbienceVolume
+  StudioPath: parameter:/AmbienceVolume
+  Min: 0
+  Max: 100
+  Default: 84.15842
+  ID:
+    data1: 2027359208
+    data2: 2028548809
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-1437688125660603522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/People
+  m_EditorClassIdentifier: 
+  Name: People
+  StudioPath: parameter:/People
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1741128988
+    data2: 1426219780
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-573230890524309817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Pool Party/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638852625661518560
+  FileSizes:
+  - Name: 
+    Value: 1736
+  Exists: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: -573230890524309817}
+  - {fileID: -8596802990887879530}
+  - {fileID: -5069209346129054364}
+  - {fileID: 2418130719765280253}
+  - {fileID: -6114163343230879148}
+  EditorEvents:
+  - {fileID: 2965952763670451445}
+  - {fileID: -8939518758977160751}
+  - {fileID: -8178586162728619290}
+  - {fileID: 6746965587251444468}
+  - {fileID: 3980906199009387185}
+  - {fileID: 5042861410921937046}
+  - {fileID: -8342029381352373631}
+  EditorParameters:
+  - {fileID: -1437688125660603522}
+  - {fileID: 9209688804030339249}
+  - {fileID: 1637300687873306715}
+  - {fileID: -3495065930652736776}
+  - {fileID: 1559269851626394497}
+  - {fileID: 7057654147491195395}
+  MasterBanks:
+  - {fileID: 2418130719765280253}
+  StringsBanks:
+  - {fileID: -573230890524309817}
+  cacheVersion: 131847
+  cacheTime: 638852742183327157
+  SerializableEventsDict:
+  - key: event:/Ambience/PeopleEvent
+    index: 0
+  - key: event:/FX/BumpEvent
+    index: 1
+  - key: snapshot:/Defeat
+    index: 2
+  - key: snapshot:/Normal
+    index: 3
+  - key: event:/Music/MusicLoopEvent
+    index: 4
+  - key: event:/Music/ChangeMusic
+    index: 5
+  - key: event:/Music/Menu
+    index: 6
+--- !u!114 &910400636458372495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/PeopleEvent/People
+  m_EditorClassIdentifier: 
+  Name: People
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1741128988
+    data2: 1426219780
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &1559269851626394497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MasterVolume
+  m_EditorClassIdentifier: 
+  Name: MasterVolume
+  StudioPath: parameter:/MasterVolume
+  Min: 0
+  Max: 100
+  Default: 85
+  ID:
+    data1: 2482416039
+    data2: 2079139660
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &1637300687873306715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FxVolume
+  m_EditorClassIdentifier: 
+  Name: FxVolume
+  StudioPath: parameter:/FxVolume
+  Min: 0
+  Max: 100
+  Default: 85
+  ID:
+    data1: 661277682
+    data2: 3452177601
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &2418130719765280253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Pool Party/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638852625661508048
+  FileSizes: []
+  Exists: 1
+--- !u!114 &2965952763670451445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambience/PeopleEvent
+  m_EditorClassIdentifier: 
+  Path: event:/Ambience/PeopleEvent
+  Guid:
+    Data1: -1563429037
+    Data2: 1259772407
+    Data3: 339368851
+    Data4: 1129488158
+  Banks:
+  - {fileID: -8596802990887879530}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 910400636458372495}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &3944670425175916930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MusicLoopEvent/Music
+  m_EditorClassIdentifier: 
+  Name: Music
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 1
+  ID:
+    data1: 2250332275
+    data2: 2556465400
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &3980906199009387185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/MusicLoopEvent
+  m_EditorClassIdentifier: 
+  Path: event:/Music/MusicLoopEvent
+  Guid:
+    Data1: -1714084719
+    Data2: 1200580540
+    Data3: -1364988527
+    Data4: -622372823
+  Banks:
+  - {fileID: -6114163343230879148}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -7082197673345713884}
+  - {fileID: 3944670425175916930}
+  - {fileID: 6141801794909162193}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4109666110109633748
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -75,7 +510,7 @@ MonoBehaviour:
   - AngryConsumer
   - NormalConsumer
   Exists: 1
---- !u!114 &-7932079131750996444
+--- !u!114 &5042861410921937046
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84,22 +519,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/People
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/ChangeMusic
   m_EditorClassIdentifier: 
-  Name: People
-  StudioPath: parameter:/People
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 1741128988
-    data2: 1426219780
-  Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
---- !u!114 &-7795041252990345376
+  Path: event:/Music/ChangeMusic
+  Guid:
+    Data1: -1169047353
+    Data2: 1288123455
+    Data3: -649378432
+    Data4: 780799628
+  Banks:
+  - {fileID: -6114163343230879148}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &6141801794909162193
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,7 +561,7 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &-4236320445279205935
+--- !u!114 &6746965587251444468
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,107 +571,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FX/BumpEvent
+  m_Name: snapshot:/Normal
   m_EditorClassIdentifier: 
-  Path: event:/FX/BumpEvent
+  Path: snapshot:/Normal
   Guid:
-    Data1: -1248228615
-    Data2: 1311838181
-    Data3: -1025095757
-    Data4: 644584398
+    Data1: 1667974891
+    Data2: 1179670313
+    Data3: 1687066497
+    Data4: -552353553
   Banks:
-  - {fileID: 4341524357818277619}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters:
-  - {fileID: -8122949249425298574}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-3220713629620329012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Music.bank
-  m_EditorClassIdentifier: 
-  Path: Pool Party/Build/Desktop/Music.bank
-  Name: Music
-  StudioPath: bank:/Music
-  lastModified: 638852662287949154
-  FileSizes: []
-  Exists: 1
---- !u!114 &-3183812452910292702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music/ChangeMusic
-  m_EditorClassIdentifier: 
-  Path: event:/Music/ChangeMusic
-  Guid:
-    Data1: -1169047353
-    Data2: 1288123455
-    Data3: -649378432
-    Data4: 780799628
-  Banks:
-  - {fileID: -3220713629620329012}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-2326759924114037112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Ambience.bank
-  m_EditorClassIdentifier: 
-  Path: Pool Party/Build/Desktop/Ambience.bank
-  Name: Ambience
-  StudioPath: bank:/Ambience
-  lastModified: 638852662287726816
-  FileSizes: []
-  Exists: 1
---- !u!114 &-1644526557945092518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: snapshot:/Defeat
-  m_EditorClassIdentifier: 
-  Path: snapshot:/Defeat
-  Guid:
-    Data1: 224718874
-    Data2: 1243163739
-    Data3: 122918820
-    Data4: 1083574885
-  Banks:
-  - {fileID: 608470579515898314}
+  - {fileID: 2418130719765280253}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -241,103 +588,7 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
-  m_Name: FMODStudioCache
-  m_EditorClassIdentifier: 
-  EditorBanks:
-  - {fileID: -8585098810763804015}
-  - {fileID: -2326759924114037112}
-  - {fileID: 4341524357818277619}
-  - {fileID: 608470579515898314}
-  - {fileID: -3220713629620329012}
-  EditorEvents:
-  - {fileID: 3862918348286491178}
-  - {fileID: -4236320445279205935}
-  - {fileID: -1644526557945092518}
-  - {fileID: 3988675606993195657}
-  - {fileID: 8175827324658329286}
-  - {fileID: -3183812452910292702}
-  - {fileID: 6241371420851614009}
-  EditorParameters:
-  - {fileID: -7932079131750996444}
-  - {fileID: 8883442374619205293}
-  - {fileID: 7068976704588752785}
-  - {fileID: 7996338960926451024}
-  - {fileID: 6132382812431199385}
-  - {fileID: 680041556632050548}
-  MasterBanks:
-  - {fileID: 608470579515898314}
-  StringsBanks:
-  - {fileID: -8585098810763804015}
-  cacheVersion: 131847
-  cacheTime: 638852662287949154
-  SerializableEventsDict:
-  - key: event:/Ambience/PeopleEvent
-    index: 0
-  - key: event:/FX/BumpEvent
-    index: 1
-  - key: snapshot:/Defeat
-    index: 2
-  - key: snapshot:/Normal
-    index: 3
-  - key: event:/Music/MusicLoopEvent
-    index: 4
-  - key: event:/Music/ChangeMusic
-    index: 5
-  - key: event:/Music/Menu
-    index: 6
---- !u!114 &435917530789463551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/PeopleEvent/People
-  m_EditorClassIdentifier: 
-  Name: People
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 1741128988
-    data2: 1426219780
-  Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
---- !u!114 &608470579515898314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: Pool Party/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638852662287741985
-  FileSizes: []
-  Exists: 1
---- !u!114 &680041556632050548
+--- !u!114 &7057654147491195395
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -361,258 +612,7 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &763695409892343834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/MusicLoopEvent/Music
-  m_EditorClassIdentifier: 
-  Name: Music
-  StudioPath: 
-  Min: 0
-  Max: 2
-  Default: 1
-  ID:
-    data1: 2250332275
-    data2: 2556465400
-  Type: 1
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &3862918348286491178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Ambience/PeopleEvent
-  m_EditorClassIdentifier: 
-  Path: event:/Ambience/PeopleEvent
-  Guid:
-    Data1: -1563429037
-    Data2: 1259772407
-    Data3: 339368851
-    Data4: 1129488158
-  Banks:
-  - {fileID: -2326759924114037112}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters:
-  - {fileID: 435917530789463551}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &3988675606993195657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: snapshot:/Normal
-  m_EditorClassIdentifier: 
-  Path: snapshot:/Normal
-  Guid:
-    Data1: 1667974891
-    Data2: 1179670313
-    Data3: 1687066497
-    Data4: -552353553
-  Banks:
-  - {fileID: 608470579515898314}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 0
---- !u!114 &4341524357818277619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Fx.bank
-  m_EditorClassIdentifier: 
-  Path: Pool Party/Build/Desktop/Fx.bank
-  Name: Fx
-  StudioPath: bank:/Fx
-  lastModified: 638852662287732182
-  FileSizes: []
-  Exists: 1
---- !u!114 &5510418414535845251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/MusicLoopEvent/Padding
-  m_EditorClassIdentifier: 
-  Name: Padding
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0.7
-  ID:
-    data1: 3604104461
-    data2: 3585246403
-  Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
---- !u!114 &6132382812431199385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/MasterVolume
-  m_EditorClassIdentifier: 
-  Name: MasterVolume
-  StudioPath: parameter:/MasterVolume
-  Min: 0
-  Max: 100
-  Default: 85
-  ID:
-    data1: 2482416039
-    data2: 2079139660
-  Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
---- !u!114 &6241371420851614009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music/Menu
-  m_EditorClassIdentifier: 
-  Path: event:/Music/Menu
-  Guid:
-    Data1: 569135593
-    Data2: 1248172384
-    Data3: -618271841
-    Data4: -1766809746
-  Banks:
-  - {fileID: -3220713629620329012}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -8487695245265171349}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 64000
---- !u!114 &7068976704588752785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/FxVolume
-  m_EditorClassIdentifier: 
-  Name: FxVolume
-  StudioPath: parameter:/FxVolume
-  Min: 0
-  Max: 100
-  Default: 85
-  ID:
-    data1: 661277682
-    data2: 3452177601
-  Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
---- !u!114 &7996338960926451024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/AmbienceVolume
-  m_EditorClassIdentifier: 
-  Name: AmbienceVolume
-  StudioPath: parameter:/AmbienceVolume
-  Min: 0
-  Max: 100
-  Default: 84.15842
-  ID:
-    data1: 2027359208
-    data2: 2028548809
-  Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
---- !u!114 &8175827324658329286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Music/MusicLoopEvent
-  m_EditorClassIdentifier: 
-  Path: event:/Music/MusicLoopEvent
-  Guid:
-    Data1: -1714084719
-    Data2: 1200580540
-    Data3: -1364988527
-    Data4: -622372823
-  Banks:
-  - {fileID: -3220713629620329012}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: 5510418414535845251}
-  - {fileID: 763695409892343834}
-  - {fileID: -7795041252990345376}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &8883442374619205293
+--- !u!114 &9209688804030339249
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
