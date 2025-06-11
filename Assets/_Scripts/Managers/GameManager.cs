@@ -38,6 +38,8 @@ public class ZonePoint
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject optionsUI;
+
     public static GameManager Instance; 
     public List<GameObject> CustomerPrefabs;
     public List<ZonesCap> capZones;
@@ -80,7 +82,15 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            OpenOptionsMenu(true);
+        }
+    }
 
+    public void OpenOptionsMenu(bool value)
+    {
+        optionsUI.SetActive(value);
     }
 
     private IEnumerator SpawnLoop()
