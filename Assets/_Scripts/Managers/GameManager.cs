@@ -57,9 +57,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<Transform> doorPoints;
     [SerializeField] int maxAforo = 20;
     public int currentAforo;
-
-    public List<GameObject> normalConsumers = new List<GameObject>();
-    public List<GameObject> problematicConsumers = new List<GameObject>();
+    public int noProblematicAforo;
+    public int problematicAforo;
 
     [SerializeField] private float spawnInterval;
     [SerializeField] private GameObject[] cameras = new GameObject[1];
@@ -135,12 +134,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-    private void OnDisable()
-    {
-        NPCBehavior.OnNPCRequestDespawn -= HandleDespawnRequest;
-    }
-
     void HandleDespawnRequest(NPCBehavior npc)
     {
         // resta en uno de la zona que era el npc, tambien restando si este era problematico o no de la zona.
@@ -151,12 +144,12 @@ public class GameManager : MonoBehaviour
         zoneCap.Capacity--;
         if (npc.npc.isProblematic)
         {
-            problematicConsumers.Remove(npc.gameObject);
+            problematicAforo--;
             zoneCap.problematicConsumer--;
         }
         else
         {
-            normalConsumers.Remove(npc.gameObject);
+            noProblematicAforo--;
             zoneCap.noProblematicConsumer--;
         }
         currentAforo--;
@@ -258,7 +251,7 @@ public class GameManager : MonoBehaviour
 
      private void GameOver()
     {
-        bool tooManyProblem = problematicConsumers.Count >= Mathf.CeilToInt(maxAforo * 0.5f);
+        bool tooManyProblem =  problematicAforo >= Mathf.CeilToInt(maxAforo * 0.5f);
 
         if (!tooManyProblem)
             return; // aún no es Game Over

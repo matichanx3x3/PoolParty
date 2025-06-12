@@ -99,9 +99,7 @@ public class NPCBehavior : MonoBehaviour
             Debug.LogWarning("No se pudo asignar punto a NPC");
             return;
         }
-
-        GameManager.Instance.normalConsumers.Add(this.gameObject);
-
+        GameManager.Instance.noProblematicAforo++;
         GoToAsignedPoint(assignedPoint);
     }
 
@@ -142,8 +140,8 @@ public class NPCBehavior : MonoBehaviour
             }
             if (timerCorutine != null)
                 StopCoroutine(timerCorutine);
-            GameManager.Instance.normalConsumers.Remove(this.gameObject);
-            GameManager.Instance.problematicConsumers.Add(this.gameObject);
+            GameManager.Instance.noProblematicAforo--; 
+            GameManager.Instance.problematicAforo++;
             Debug.Log($"NPC {npc.role} ha entrado en modo problemático: {npc.mood}");
         }
         // Desactivamos trigger para que colisiones físicas interpongan
@@ -188,37 +186,6 @@ public class NPCBehavior : MonoBehaviour
         npc.nroSerMolestado++;
         AddMolestiaPoints();
     }
-
-    /*public void DoProblematicRoutine()
-    {
-        Debug.Log("Lanzandose");
-        this.transform.tag = "Angry";
-        //si el npc se ha convertido en un problematico, se le asigna su rutina modificada de Borracho, Euforico, Problematico.
-        actualEye.sprite = eyeList[2];
-
-        RaycastHit2D[] outHit =  Physics2D.CircleCastAll(this.transform.position,10f,Vector2.zero);
-
-        target = null;
-        if(outHit.Length > 0 && outHit != null)
-        {
-            for (int i = 0; i < outHit.Length; i++)
-            {
-                if (outHit[i].transform.CompareTag("Clients"))
-                {
-                    target = outHit[i].transform.gameObject;
-                    break;
-                }
-                target = null;
-            }
-        }
-
-        if(target != null)
-        {
-            Debug.Log("Lanzandose pt 2");
-            rb.AddForce((target.transform.position - this.transform.position).normalized * 4, ForceMode2D.Impulse);
-        }
-
-    }*/
 
     private void DoNormalRoutine()
     {
@@ -265,16 +232,6 @@ public class NPCBehavior : MonoBehaviour
 
     private void LaunchAtNearestClient()
     {
-        /*
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 10f, Vector2.zero);
-        Transform target = hits.FirstOrDefault(h => h.transform.CompareTag("Clients")).transform;
-
-        if (target != null)
-        {
-            Vector2 dir = (target.position - transform.position).normalized;
-            rb.AddForce(dir * 4f, ForceMode2D.Impulse);
-            Debug.Log("Peleador lanza contra cliente");
-        }*/
         RaycastHit2D[] outHit =  Physics2D.CircleCastAll(this.transform.position,10f,Vector2.zero);
 
         target = null;
@@ -434,8 +391,8 @@ public class NPCBehavior : MonoBehaviour
             }
             if (timerCorutine != null)
                 StopCoroutine(timerCorutine);
-            GameManager.Instance.normalConsumers.Remove(this.gameObject);
-            GameManager.Instance.problematicConsumers.Add(this.gameObject);
+            GameManager.Instance.noProblematicAforo--; 
+            GameManager.Instance.problematicAforo++;
             print($"NPC se volvió problemático: {npc.mood}");
             StartCoroutine(RoutineLoop());
         }
@@ -443,6 +400,11 @@ public class NPCBehavior : MonoBehaviour
         {
             npc.isProblematic = false;
             isGoingKicked = true;
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+
+            rb.bodyType = RigidbodyType2D.Kinematic;
+            rb.simulated = false;
             Transform door = GameManager.Instance.GetExitDoor();
 
             if (moveCoroutine != null)
