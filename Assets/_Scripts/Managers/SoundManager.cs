@@ -29,8 +29,8 @@ public class SoundManager : MonoBehaviour
     public Slider ambienceSlider;
     public Slider paddingSlider;
 
-        // Start is called before the first frame update
-    void Start()
+
+    void Awake()
     {
         if(Instance == null)
         {
@@ -46,9 +46,10 @@ public class SoundManager : MonoBehaviour
         RuntimeManager.LoadBank("Master", true);
         RuntimeManager.LoadBank("Music", true);
 
+        
         bool bankLoaded = RuntimeManager.HasBankLoaded("Music");
         //Debug.Log("FX loaded: " + bankLoaded);
-
+        StartCoroutine(VerifyIsBanksFulled());
         bumpInstance = RuntimeManager.CreateInstance(bumpEvent);
         discoMusic = RuntimeManager.CreateInstance(musicEvent);
 
@@ -61,6 +62,20 @@ public class SoundManager : MonoBehaviour
 
         discoMusic.start();
 
+    }
+
+    IEnumerator VerifyIsBanksFulled()
+    {
+        while (!RuntimeManager.HaveAllBanksLoaded)
+        {
+            yield return null; 
+        // Wait until all banks are loaded
+        }
+        FMODUnity.RuntimeManager.CoreSystem.mixerSuspend();
+        FMODUnity.RuntimeManager.CoreSystem.mixerResume();
+        Debug.Log("AllBanksLoaded");
+        // Ensure FMOD is fully initialized before playing sounds
+        yield return new WaitForSeconds(0.1f);
     }
 
     private void SetSliders()
