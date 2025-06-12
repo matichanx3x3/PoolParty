@@ -173,49 +173,45 @@ public class GameManager : MonoBehaviour
 
    public Transform AssignZoneToNPC(NPCBehavior npc)
     {
-        //zona según su rol
-        TypeZones zoneType = npc.npc.assignedZone;
+        TypeZones preferredZone = npc.npc.assignedZone;
 
-        // Buscar el objeto ZonesCap para esa zona
-        ZonesCap zoneCap = capZones.Find(z => z.typeZones == zoneType);
-        if (zoneCap == null)
+        // primero la preferida, luego el resto
+        var orderedZones = new List<ZonesCap>();
+        var preferredCap = capZones.Find(zc => zc.typeZones == preferredZone);
+        if (preferredCap != null) orderedZones.Add(preferredCap);
+        orderedZones.AddRange(capZones.Where(zc => zc.typeZones != preferredZone));
+
+        // Intentar asignar en orden
+        foreach (var zoneCap in orderedZones)
         {
-            Debug.LogError($"No existe ZonesCap para {zoneType}");
-            return null;
+            
+            var availablePoints = zoneCap.zonePoints.Where(zp => !zp.isFull).ToList();
+            if (availablePoints.Count == 0)
+                continue; 
+
+            var freePoint = availablePoints[UnityEngine.Random.Range(0, availablePoints.Count)];
+
+            if (zoneCap.typeZones != preferredZone)
+                npc.npc.assignedZone = zoneCap.typeZones;
+
+            freePoint.actualCustomer++;
+            if (freePoint.actualCustomer >= freePoint.maxCustomer)
+                freePoint.isFull = true;
+
+            zoneCap.Capacity = zoneCap.zonePoints.Sum(zp => zp.actualCustomer);
+            zoneCap.isZoneFull = zoneCap.Capacity >= zoneCap.MaxCap;
+
+            if (npc.npc.isProblematic)
+                zoneCap.problematicConsumer++;
+            else
+                zoneCap.noProblematicConsumer++;
+
+            return freePoint.point;
         }
 
-        // find ZonePoint que no esté lleno
-        var availablePoints = zoneCap.zonePoints.Where(zp => !zp.isFull).ToList();
-        if (availablePoints.Count == 0)
-        {
-            Debug.LogWarning($"Zona {zoneType} está completa (todos los puntos llenos)");
-            return null;
-        }
-        ZonePoint freePoint = availablePoints[UnityEngine.Random.Range(0, availablePoints.Count)];
-
-        if (freePoint == null)
-        {
-            Debug.LogWarning($"Zona {zoneType} está completa (todos los puntos llenos)");
-            return null;
-        }
-
-    
-        freePoint.actualCustomer++;
-        //si alcanza el máximo -> lleno
-        if (freePoint.actualCustomer >= freePoint.maxCustomer)
-            freePoint.isFull = true;
-
-        zoneCap.Capacity = zoneCap.zonePoints.Sum(zp => zp.actualCustomer);
-        
-        if (zoneCap.Capacity >= zoneCap.MaxCap)
-            zoneCap.isZoneFull = true;
-
-        if (npc.npc.isProblematic)
-            zoneCap.problematicConsumer++;
-        else
-            zoneCap.noProblematicConsumer++;
-
-        return freePoint.point;
+        Debug.LogWarning("No hay espacio en ninguna zona disponible para el NPC");
+        HandleDespawnRequest(npc);
+        return null;
     }
 
     public Transform GetExitDoor()
