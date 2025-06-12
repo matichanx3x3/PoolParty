@@ -99,6 +99,7 @@ public class GameManager : MonoBehaviour
     {
         ResetTutorial();
         isPaused = value;
+        TogglePause(isPaused);
         optionsUI.SetActive(value);
     }
 
@@ -227,6 +228,26 @@ public class GameManager : MonoBehaviour
         camera1.SetActive(!camera1.activeSelf);
         camera2.SetActive(!camera2.activeSelf);
     }
+    public void TogglePause(bool isPaused)
+    {
+        if (isPaused)
+            PauseGame();
+        else
+            ResumeGame();
+    }
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+        Debug.Log("Juego pausado");
+    }
+
+    // Método para reanudar el juego
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        Debug.Log("Juego reanudado");
+    }
+
     void GameOver()
     {
         //game over si el aforo actual es menos al 20% del maximo o cuando la cantidad de problematicos sea del 50% del aforo maximo del lugar
