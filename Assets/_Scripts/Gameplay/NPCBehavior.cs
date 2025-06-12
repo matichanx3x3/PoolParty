@@ -139,6 +139,9 @@ public class NPCBehavior : MonoBehaviour
                     npc.mood = NPCMood.Euforico;
                     break;
             }
+            
+            GameManager.Instance.normalConsumers.Remove(this.gameObject);
+            GameManager.Instance.problematicConsumers.Add(this.gameObject);
             Debug.Log($"NPC {npc.role} ha entrado en modo problemático: {npc.mood}");
         }
         // Desactivamos trigger para que colisiones físicas interpongan
@@ -428,7 +431,8 @@ public class NPCBehavior : MonoBehaviour
                     npc.mood = NPCMood.Euforico;
                     break;
             }
-
+            GameManager.Instance.normalConsumers.Remove(this.gameObject);
+            GameManager.Instance.problematicConsumers.Add(this.gameObject);
             print($"NPC se volvió problemático: {npc.mood}");
             StartCoroutine(RoutineLoop());
         }

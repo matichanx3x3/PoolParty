@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 2106670196742024709}
   - component: {fileID: 2133687345327200438}
   m_Layer: 0
-  m_Name: borde
+  m_Name: Borde
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

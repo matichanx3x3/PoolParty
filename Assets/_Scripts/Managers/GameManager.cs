@@ -51,13 +51,15 @@ public class GameManager : MonoBehaviour
     public List<GameObject> CustomerPrefabs;
     public List<ZonesCap> capZones;
     //[SerializeField] GameObject npcPrefab;
+    //GameOverUI
+    [SerializeField] private GameObject gameOverPanel;
     [SerializeField] List<Transform> spawnPoints; //Puntos de instancia
     [SerializeField] List<Transform> doorPoints;
     [SerializeField] int maxAforo = 20;
     public int currentAforo;
 
     public List<GameObject> normalConsumers = new List<GameObject>();
-    [SerializeField] List<GameObject> problematicConsumers = new List<GameObject>();
+    public List<GameObject> problematicConsumers = new List<GameObject>();
 
     [SerializeField] private float spawnInterval;
     [SerializeField] private GameObject[] cameras = new GameObject[1];
@@ -119,6 +121,7 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
+            GameOver();
             SpawnNPC();
             yield return new WaitForSeconds(spawnInterval);
         }
@@ -147,10 +150,15 @@ public class GameManager : MonoBehaviour
 
         zoneCap.Capacity--;
         if (npc.npc.isProblematic)
+        {
+            problematicConsumers.Remove(npc.gameObject);
             zoneCap.problematicConsumer--;
+        }
         else
+        {
+            normalConsumers.Remove(npc.gameObject);
             zoneCap.noProblematicConsumer--;
-
+        }
         currentAforo--;
 
         Destroy(npc.gameObject);
@@ -248,8 +256,21 @@ public class GameManager : MonoBehaviour
         Debug.Log("Juego reanudado");
     }
 
-    void GameOver()
+     private void GameOver()
     {
-        //game over si el aforo actual es menos al 20% del maximo o cuando la cantidad de problematicos sea del 50% del aforo maximo del lugar
+        bool tooManyProblem = problematicConsumers.Count >= Mathf.CeilToInt(maxAforo * 0.5f);
+
+        if (!tooManyProblem)
+            return; // aún no es Game Over
+
+        PauseGame();
+
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true);
+        }
+        Debug.Log("GameOver");
+        StopCoroutine("SpawnLoop");
+        
     }
 }
