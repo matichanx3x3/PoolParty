@@ -54,7 +54,7 @@ public class NPCBehavior : MonoBehaviour
     public List<Sprite> eyeList;
 
     [SerializeField] private float normalRoutineInterval = 5f;
-    [SerializeField] private float problematicRoutineInterval = 3f;
+    [SerializeField] private float problematicRoutineInterval = 7f;
 
     // Llamado desde GameManager justo tras Instantiate
     public void BeignSpawned(Transform doorTransform)
@@ -115,17 +115,18 @@ public class NPCBehavior : MonoBehaviour
     public void DoRoutine()
     {
         int roll = UnityEngine.Random.Range(0, 100);
-        if (roll < 60)
+        if (roll < 80)
         {
-            // 60% rutina normal
+            // 80% rutina normal
             npc.isProblematic = false;
             npc.mood = NPCMood.Normal;
             Debug.Log($"NPC {npc.role} hace su rutina normal");
         }
         else
         {
-            // 40% se vuelve problemático
+            // 20% se vuelve problemático
             npc.isProblematic = true;
+            transform.Find("Borde").GetComponent<SpriteRenderer>().color = Color.red;
             switch (npc.role)
             {
                 case NPCRole.Social:
@@ -323,12 +324,7 @@ public class NPCBehavior : MonoBehaviour
 
     public void ResetMovement()
     {
-        rb.velocity = Vector2.zero;
-        rb.angularVelocity = 0f;
 
-        rb.bodyType = RigidbodyType2D.Kinematic;
-        rb.simulated = false;
-        canMove = false;
 
 
         StartCoroutine(ResumeAfterDelay(2f));
@@ -336,6 +332,13 @@ public class NPCBehavior : MonoBehaviour
 
     private IEnumerator ResumeAfterDelay(float delay)
     {
+        yield return new WaitForSeconds(delay);
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.simulated = false;
+        canMove = false;
         yield return new WaitForSeconds(delay);
 
         rb.simulated = true;
@@ -412,6 +415,7 @@ public class NPCBehavior : MonoBehaviour
         {
             npc.isProblematic = true;
             isGoingKicked = true;
+            transform.Find("Borde").GetComponent<SpriteRenderer>().color = Color.red;
             switch (npc.role)
             {
                 case NPCRole.Social:

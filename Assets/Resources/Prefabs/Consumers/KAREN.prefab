@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1867481457474037658}
   - component: {fileID: 3210775103239029221}
   m_Layer: 0
-  m_Name: Borde_karen
+  m_Name: Borde
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -233,6 +233,7 @@ MonoBehaviour:
     inTransition: 0
   directionToMove: {fileID: 0}
   canMove: 1
+  isGoingKicked: 0
   moveSpeed: 2
   rb: {fileID: -5159383092561850787}
   col2D: {fileID: 6930567046787574428}
@@ -242,6 +243,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a0b68d5efc5864be9a35016dd74e7146, type: 3}
   - {fileID: 21300000, guid: e48cca6aaf8ee4e45a96f9a00b0b31a2, type: 3}
   - {fileID: 21300000, guid: e8297cbf8efab4940b9ada305c60914f, type: 3}
+  normalRoutineInterval: 5
+  problematicRoutineInterval: 7
 --- !u!50 &-5159383092561850787
 Rigidbody2D:
   serializedVersion: 4
