@@ -28,7 +28,7 @@ public class NPC
         isProblematic = false;
         molestia = 10;
         satisfaccion = MaxSatisfaccion - molestia;
-        partyMaxTimer = 40;
+        partyMaxTimer = 10;
         partyActualTimer = 0;
         nroSerMolestado = 0;
         inTransition = false;
@@ -37,12 +37,16 @@ public class NPC
 
 public class NPCBehavior : MonoBehaviour
 {
+    [HideInInspector]
+    public ZonePoint currentZonePoint;
+    
     public GameObject target;
     public NPC npc;
     public static event Action<NPCBehavior> OnNPCRequestDespawn;
     [SerializeField] Transform directionToMove;
     [HideInInspector] public bool canMove = true; // Indicates if the NPC can move
     bool busy = false;
+    private bool hasDespawned = false;
     [SerializeField] bool isGoingKicked = false;
 
     public float moveSpeed = 2f;
@@ -57,6 +61,10 @@ public class NPCBehavior : MonoBehaviour
     [SerializeField] private float normalRoutineInterval = 5f;
     [SerializeField] private float problematicRoutineInterval = 7f;
 
+    public void AssignZonePoint(ZonePoint zp)
+    {
+        currentZonePoint = zp;
+    }
     // Llamado desde GameManager justo tras Instantiate
     public void BeignSpawned(Transform doorTransform)
     {
@@ -92,14 +100,12 @@ public class NPCBehavior : MonoBehaviour
 
     private void RequestZoneFromManager()
     {
-        // Asigna el punto donde irá en la zona
         Transform assignedPoint = GameManager.Instance.AssignZoneToNPC(this);
         if (assignedPoint == null)
         {
             Debug.LogWarning("No se pudo asignar punto a NPC");
             return;
         }
-        GameManager.Instance.noProblematicAforo++;
         GoToAsignedPoint(assignedPoint);
     }
 
@@ -124,27 +130,8 @@ public class NPCBehavior : MonoBehaviour
         else
         {
             // 20% se vuelve problemático
-            npc.isProblematic = true;
-            transform.Find("Borde").GetComponent<SpriteRenderer>().color = Color.red;
-            switch (npc.role)
-            {
-                case NPCRole.Social:
-                    npc.mood = NPCMood.Peleador;
-                    break;
-                case NPCRole.Bebedor:
-                    npc.mood = NPCMood.Borracho;
-                    break;
-                case NPCRole.Bailador:
-                    npc.mood = NPCMood.Euforico;
-                    break;
-            }
-            if (timerCorutine != null)
-                StopCoroutine(timerCorutine);
-            GameManager.Instance.noProblematicAforo--; 
-            GameManager.Instance.problematicAforo++;
-            Debug.Log($"NPC {npc.role} ha entrado en modo problemático: {npc.mood}");
+            MarkAsProblematic();
         }
-        // Desactivamos trigger para que colisiones físicas interpongan
         col2D.isTrigger = false;
 
         if (!npc.isProblematic)
@@ -312,9 +299,11 @@ public class NPCBehavior : MonoBehaviour
 
     void DespawnMe()
     {
+        if (hasDespawned) 
+            return;
+        hasDespawned = true;
         StopAllCoroutines();
-        isGoingKicked = true;
-        OnNPCRequestDespawn?.Invoke(this); // Lanza el evento
+        OnNPCRequestDespawn?.Invoke(this); 
     }
     void GenerateNewConsumer()
     {
@@ -374,27 +363,7 @@ public class NPCBehavior : MonoBehaviour
 
         if (randomChance <= npc.molestia)
         {
-            npc.isProblematic = true;
-            isGoingKicked = true;
-            transform.Find("Borde").GetComponent<SpriteRenderer>().color = Color.red;
-            switch (npc.role)
-            {
-                case NPCRole.Social:
-                    npc.mood = NPCMood.Peleador;
-                    break;
-                case NPCRole.Bebedor:
-                    npc.mood = NPCMood.Borracho;
-                    break;
-                case NPCRole.Bailador:
-                    npc.mood = NPCMood.Euforico;
-                    break;
-            }
-            if (timerCorutine != null)
-                StopCoroutine(timerCorutine);
-            GameManager.Instance.noProblematicAforo--; 
-            GameManager.Instance.problematicAforo++;
-            print($"NPC se volvió problemático: {npc.mood}");
-            StartCoroutine(RoutineLoop());
+            MarkAsProblematic();
         }
         else
         {
@@ -416,6 +385,30 @@ public class NPCBehavior : MonoBehaviour
         npc.inTransition = false;
     }
 
+    private void MarkAsProblematic()
+    {
+        npc.isProblematic = true;
+        isGoingKicked = true;
+        transform.Find("Borde").GetComponent<SpriteRenderer>().color = Color.red;
+        switch (npc.role)
+        {
+            case NPCRole.Social:
+                npc.mood = NPCMood.Peleador;
+                break;
+            case NPCRole.Bebedor:
+                npc.mood = NPCMood.Borracho;
+                break;
+            case NPCRole.Bailador:
+                npc.mood = NPCMood.Euforico;
+                break;
+        }
+        if (timerCorutine != null)
+            StopCoroutine(timerCorutine);
+        GameManager.Instance.noProblematicAforo--; 
+        GameManager.Instance.problematicAforo++;
+        print($"NPC se volvió problemático: {npc.mood}");
+        StartCoroutine(RoutineLoop());
+    }
 
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -428,7 +421,7 @@ public class NPCBehavior : MonoBehaviour
                 ReactToGuardHit(collision);
         }
 
-        if (collision.collider.CompareTag("Door"))
+        if (collision.collider.CompareTag("Door")&& isGoingKicked && currentZonePoint != null)
         {
             if (isGoingKicked) DespawnMe();
         }
@@ -437,9 +430,9 @@ public class NPCBehavior : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         {
-            if (collision.transform.CompareTag("Door"))
+            if (collision.transform.CompareTag("Door")&& isGoingKicked && currentZonePoint != null)
             {
-                if (isGoingKicked) DespawnMe();
+                DespawnMe();
             }
         }
     }

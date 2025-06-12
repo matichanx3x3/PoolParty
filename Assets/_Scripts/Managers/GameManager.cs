@@ -19,7 +19,13 @@ public class ZonePoint
     public int actualCustomer;
     public bool isFull;
     public Transform point;
-    
+    public void ReleaseCustomer()
+    {
+        if (actualCustomer > 0)
+            actualCustomer--;
+        if (isFull && actualCustomer < maxCustomer)
+            isFull = false;
+    }
 }
 
 [Serializable]public class ZonesCap
@@ -34,6 +40,11 @@ public class ZonePoint
 
     public bool isZoneFull;
     public List<ZonePoint> zonePoints;
+    public void RecalculateCapacity()
+    {
+        Capacity = zonePoints.Sum(zp => zp.actualCustomer);
+        isZoneFull = Capacity >= MaxCap;
+    }
 }
 
 public class GameManager : MonoBehaviour
@@ -137,32 +148,27 @@ public class GameManager : MonoBehaviour
     void HandleDespawnRequest(NPCBehavior npc)
     {
         // resta en uno de la zona que era el npc, tambien restando si este era problematico o no de la zona.
-
-        var zoneType = npc.npc.assignedZone;
-        var zoneCap = capZones.First(z => z.typeZones == zoneType);
-
-        zoneCap.Capacity--;
-        if (npc.npc.isProblematic)
+        var zp = npc.currentZonePoint;
+        if (zp != null)
         {
-            problematicAforo--;
-            zoneCap.problematicConsumer--;
+            zp.ReleaseCustomer();
+            var zc = capZones.First(z => z.typeZones == npc.npc.assignedZone);
+            zc.RecalculateCapacity();
+            if (npc.npc.isProblematic) zc.problematicConsumer--;
+            else                       zc.noProblematicConsumer--;
         }
-        else
-        {
-            noProblematicAforo--;
-            zoneCap.noProblematicConsumer--;
-        }
+
+        if (npc.npc.isProblematic) problematicAforo--;
+        else                       noProblematicAforo--;
         currentAforo--;
 
         Destroy(npc.gameObject);
-
         RefreshAforo();
     }
 
     public void SpawnNPC()
     {
         if (currentAforo >= maxAforo) return;
-        currentAforo++;
         var randomNumberForSpawn = UnityEngine.Random.Range(0, doorPoints.Count);
         var spawn = spawnPoints[randomNumberForSpawn];
         var door = doorPoints[randomNumberForSpawn];
@@ -203,16 +209,26 @@ public class GameManager : MonoBehaviour
             zoneCap.Capacity = zoneCap.zonePoints.Sum(zp => zp.actualCustomer);
             zoneCap.isZoneFull = zoneCap.Capacity >= zoneCap.MaxCap;
 
+            currentAforo++;
+
+            // 2) Incrementa el contador global según su estado actual
+            if (npc.npc.isProblematic)
+                problematicAforo++;
+            else
+                noProblematicAforo++;
+
+            // 3) Y solo aquí actualizas zoneCap.noProblematicConsumer o .problematicConsumer
             if (npc.npc.isProblematic)
                 zoneCap.problematicConsumer++;
             else
                 zoneCap.noProblematicConsumer++;
 
+            npc.AssignZonePoint(freePoint);
+            
             return freePoint.point;
         }
-
         Debug.LogWarning("No hay espacio en ninguna zona disponible para el NPC");
-        HandleDespawnRequest(npc);
+        //HandleDespawnRequest(npc);
         return null;
     }
 
