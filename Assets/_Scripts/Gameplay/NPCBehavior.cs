@@ -140,7 +140,8 @@ public class NPCBehavior : MonoBehaviour
                     npc.mood = NPCMood.Euforico;
                     break;
             }
-            StopCoroutine(timerCorutine);
+            if (timerCorutine != null)
+                StopCoroutine(timerCorutine);
             GameManager.Instance.normalConsumers.Remove(this.gameObject);
             GameManager.Instance.problematicConsumers.Add(this.gameObject);
             Debug.Log($"NPC {npc.role} ha entrado en modo problemático: {npc.mood}");
