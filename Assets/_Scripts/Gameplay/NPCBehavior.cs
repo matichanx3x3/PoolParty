@@ -103,7 +103,7 @@ public class NPCBehavior : MonoBehaviour
         Transform assignedPoint = GameManager.Instance.AssignZoneToNPC(this);
         if (assignedPoint == null)
         {
-            Debug.LogWarning("No se pudo asignar punto a NPC");
+            //Debug.LogWarning("No se pudo asignar punto a NPC");
             return;
         }
         GoToAsignedPoint(assignedPoint);
@@ -125,7 +125,7 @@ public class NPCBehavior : MonoBehaviour
             // 80% rutina normal
             npc.isProblematic = false;
             npc.mood = NPCMood.Normal;
-            Debug.Log($"NPC {npc.role} hace su rutina normal");
+            //Debug.Log($"NPC {npc.role} hace su rutina normal");
         }
         else
         {
@@ -237,7 +237,7 @@ public class NPCBehavior : MonoBehaviour
 
         if(target != null)
         {
-            Debug.Log("Lanzandose pt 2");
+            //Debug.Log("Lanzandose pt 2");
             rb.AddForce((target.transform.position - this.transform.position).normalized * 4, ForceMode2D.Impulse);
         }
     }
@@ -246,7 +246,7 @@ public class NPCBehavior : MonoBehaviour
     {
         Vector2 randomDir = UnityEngine.Random.insideUnitCircle.normalized;
         rb.AddForce(randomDir * 2f, ForceMode2D.Impulse);
-        Debug.Log("Borracho se tambalea");
+        //Debug.Log("Borracho se tambalea");
     }
 
     private void SpinAndMoveRandomly()
@@ -255,7 +255,7 @@ public class NPCBehavior : MonoBehaviour
         Vector2 dir = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
         rb.AddTorque(10f, ForceMode2D.Impulse);
         rb.AddForce(dir * 3f, ForceMode2D.Impulse);
-        Debug.Log("Eufórico gira y explota de energía");
+        //Debug.Log("Eufórico gira y explota de energía");
     }
     public void Timer()
     {

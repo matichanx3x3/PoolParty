@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 42352854389628683}
   - component: {fileID: 3071785827333700621}
   - component: {fileID: 6959305029778841808}
+  - component: {fileID: 5933197593678282195}
   m_Layer: 0
   m_Name: DJ
   m_TagString: Wall
@@ -173,3 +174,15 @@ PolygonCollider2D:
       - {x: -0.8, y: -2.1117647}
       - {x: -0.42941177, y: -1.8352941}
   m_UseDelaunayMesh: 0
+--- !u!114 &5933197593678282195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4335256373614195565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fbdc6ea0d9e4f538949982edf0a4e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

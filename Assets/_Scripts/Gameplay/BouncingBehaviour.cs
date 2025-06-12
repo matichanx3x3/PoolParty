@@ -37,6 +37,7 @@ public class BouncingBehaviour : MonoBehaviour
             SoundManager.Instance.PlayBump(0);
         }
 
+
         if (collision.collider.CompareTag("Clients"))
         {
             SoundManager.Instance.PlayBump(1);

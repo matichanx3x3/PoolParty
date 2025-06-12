@@ -47,7 +47,7 @@ public class SoundManager : MonoBehaviour
         RuntimeManager.LoadBank("Music", true);
 
         bool bankLoaded = RuntimeManager.HasBankLoaded("Music");
-        Debug.Log("FX loaded: " + bankLoaded);
+        //Debug.Log("FX loaded: " + bankLoaded);
 
         bumpInstance = RuntimeManager.CreateInstance(bumpEvent);
         discoMusic = RuntimeManager.CreateInstance(musicEvent);
