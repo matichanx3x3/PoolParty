@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour
     public GameObject tutorialCanva;
     public GameObject mainOptions;
     public GameObject musicOptions;
+    public TMP_Text timerText;
     public bool isPaused = false;
     public static GameManager Instance; 
     public List<GameObject> CustomerPrefabs;
@@ -326,8 +328,8 @@ public class GameManager : MonoBehaviour
         {
             gameOverPanel.SetActive(true);
         }
-        Debug.Log("GAME OVER. Tiempo jugado: " + GetFormattedFinalTime());
-        Debug.Log("GameOver");
+        timerText.text = GetFormattedFinalTime();
+
         StopCoroutine("SpawnLoop");
 
     }
