@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum TypeZones
 {
@@ -101,8 +102,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnLoop());
-        
         StartTimer();
+        PauseGame();
+        optionsUI.SetActive(true);
+        mainOptions.SetActive(false);
+        tutorialCanva.SetActive(true);
+
     }
 
     void Update()
@@ -303,9 +308,14 @@ public class GameManager : MonoBehaviour
         Debug.Log("Juego reanudado");
     }
 
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
      private void GameOver()
     {
-        bool tooManyProblem =  problematicAforo >= Mathf.CeilToInt(maxAforo * 0.5f);
+        bool tooManyProblem = problematicAforo >= Mathf.CeilToInt(maxAforo * 0.5f);
 
         if (!tooManyProblem)
             return; // aún no es Game Over
@@ -319,6 +329,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("GAME OVER. Tiempo jugado: " + GetFormattedFinalTime());
         Debug.Log("GameOver");
         StopCoroutine("SpawnLoop");
-        
+
     }
 }
