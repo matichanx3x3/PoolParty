@@ -47,6 +47,7 @@ public class NPCBehavior : MonoBehaviour
 
     public float moveSpeed = 2f;
     private Coroutine moveCoroutine;
+    private Coroutine timerCorutine;
 
     public Rigidbody2D rb;
     public Collider2D col2D;
@@ -139,16 +140,16 @@ public class NPCBehavior : MonoBehaviour
                     npc.mood = NPCMood.Euforico;
                     break;
             }
-            
+            StopCoroutine(timerCorutine);
             GameManager.Instance.normalConsumers.Remove(this.gameObject);
             GameManager.Instance.problematicConsumers.Add(this.gameObject);
             Debug.Log($"NPC {npc.role} ha entrado en modo problemático: {npc.mood}");
         }
         // Desactivamos trigger para que colisiones físicas interpongan
         col2D.isTrigger = false;
-        // Pon en marcha cualquier temporizador que uses
+
         if (!npc.isProblematic)
-            StartCoroutine(DoTimer());
+            Timer();
         
         StartCoroutine(RoutineLoop());
     }
@@ -313,7 +314,7 @@ public class NPCBehavior : MonoBehaviour
     }
     public void Timer()
     {
-        StartCoroutine(DoTimer());
+        timerCorutine = StartCoroutine(DoTimer());
     }
 
     private IEnumerator DoTimer()
@@ -329,9 +330,6 @@ public class NPCBehavior : MonoBehaviour
 
     public void ResetMovement()
     {
-
-
-
         StartCoroutine(ResumeAfterDelay(2f));
     }
 
@@ -433,6 +431,7 @@ public class NPCBehavior : MonoBehaviour
                     npc.mood = NPCMood.Euforico;
                     break;
             }
+            StopCoroutine(timerCorutine);
             GameManager.Instance.normalConsumers.Remove(this.gameObject);
             GameManager.Instance.problematicConsumers.Add(this.gameObject);
             print($"NPC se volvió problemático: {npc.mood}");
