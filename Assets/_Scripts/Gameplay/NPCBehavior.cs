@@ -147,7 +147,9 @@ public class NPCBehavior : MonoBehaviour
         // Desactivamos trigger para que colisiones físicas interpongan
         col2D.isTrigger = false;
         // Pon en marcha cualquier temporizador que uses
-        StartCoroutine(DoTimer());
+        if (!npc.isProblematic)
+            StartCoroutine(DoTimer());
+        
         StartCoroutine(RoutineLoop());
     }
 
@@ -438,6 +440,7 @@ public class NPCBehavior : MonoBehaviour
         }
         else
         {
+            npc.isProblematic = false;
             isGoingKicked = true;
             Transform door = GameManager.Instance.GetExitDoor();
 
@@ -458,7 +461,8 @@ public class NPCBehavior : MonoBehaviour
         var guard = collision.collider.GetComponent<GuardLaunch>();
         if (guard != null)
         {
-            ReactToGuardHit(collision);
+            if (!npc.isProblematic)
+                ReactToGuardHit(collision);
         }
 
         if (collision.collider.CompareTag("Door"))
@@ -479,8 +483,8 @@ public class NPCBehavior : MonoBehaviour
 
     private void ReactToGuardHit(Collision2D collision)
     {
-        if (npc.isProblematic) return;
-        AddSerMolestado();
+        if (!npc.isProblematic)
+            AddSerMolestado();
     }
 
 }
