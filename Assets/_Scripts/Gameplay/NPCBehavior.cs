@@ -479,7 +479,7 @@ public class NPCBehavior : MonoBehaviour
 
     private void ReactToGuardHit(Collision2D collision)
     {
-
+        if (npc.isProblematic) return;
         AddSerMolestado();
     }
 
