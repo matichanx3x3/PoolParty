@@ -28,7 +28,7 @@ public class NPC
         isProblematic = false;
         molestia = 10;
         satisfaccion = MaxSatisfaccion - molestia;
-        partyMaxTimer = 10;
+        partyMaxTimer = 40;
         partyActualTimer = 0;
         nroSerMolestado = 0;
         inTransition = false;

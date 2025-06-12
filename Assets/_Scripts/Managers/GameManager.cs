@@ -73,6 +73,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private float spawnInterval;
     [SerializeField] private GameObject[] cameras = new GameObject[1];
+    //gametime things
+    [SerializeField]private float elapsedTime = 0f;
+    [SerializeField]private bool timerRunning = false;
+    [SerializeField]private float finalTime = 0f;   
     void Awake()
     {
         Instance = this;
@@ -97,6 +101,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnLoop());
+        
+        StartTimer();
     }
 
     void Update()
@@ -105,6 +111,9 @@ public class GameManager : MonoBehaviour
         {
             OpenOptionsMenu(!isPaused);
         }
+        
+        if (timerRunning)
+            elapsedTime += Time.deltaTime;
     }
 
     public void OpenOptionsMenu(bool value)
@@ -113,6 +122,23 @@ public class GameManager : MonoBehaviour
         isPaused = value;
         TogglePause(isPaused);
         optionsUI.SetActive(value);
+    }
+    
+    private void StartTimer()
+    {
+        elapsedTime = 0f;
+        timerRunning = true;
+    }
+
+    private void PauseTimer()
+    {
+        timerRunning = false;
+    }
+
+    private void StopTimer()
+    {
+        timerRunning = false;
+        finalTime = elapsedTime;
     }
 
     private void ResetTutorial()
@@ -136,7 +162,13 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval);
         }
     }
-
+    public string GetFormattedFinalTime()
+    {
+        int min = Mathf.FloorToInt(finalTime / 60f);
+        int sec = Mathf.FloorToInt(finalTime % 60f);
+        return $"{min:00}:{sec:00}";
+    }
+    
     private void RefreshAforo()
     {
         if (currentAforo < maxAforo * 0.2f)
@@ -255,6 +287,9 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0f;
+        isPaused = true;
+
+        PauseTimer();
         Debug.Log("Juego pausado");
     }
 
@@ -262,6 +297,9 @@ public class GameManager : MonoBehaviour
     public void ResumeGame()
     {
         Time.timeScale = 1f;
+        isPaused = false;
+
+        timerRunning = true;
         Debug.Log("Juego reanudado");
     }
 
@@ -273,11 +311,12 @@ public class GameManager : MonoBehaviour
             return; // aún no es Game Over
 
         PauseGame();
-
+        StopTimer();
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(true);
         }
+        Debug.Log("GAME OVER. Tiempo jugado: " + GetFormattedFinalTime());
         Debug.Log("GameOver");
         StopCoroutine("SpawnLoop");
         

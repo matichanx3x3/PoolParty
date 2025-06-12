@@ -386,7 +386,7 @@ PrefabInstance:
       objectReference: {fileID: 906170247}
     - target: {fileID: 5898984361490277543, guid: f00357cb6754d4f63b0345215ef51cee, type: 3}
       propertyPath: spawnInterval
-      value: 1
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5898984361490277543, guid: f00357cb6754d4f63b0345215ef51cee, type: 3}
       propertyPath: tutorialCanva
